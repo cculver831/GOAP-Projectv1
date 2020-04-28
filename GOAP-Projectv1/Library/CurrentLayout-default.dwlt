@@ -113,7 +113,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 394}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 1
-  controlID: 56
+  controlID: 130
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 394}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 57
+  controlID: 131
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 394}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 58
+  controlID: 82
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -414,9 +414,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 123a0000
-      m_LastClickedID: 14866
-      m_ExpandedIDs: 78fbffffd2390000043a0000
+      m_SelectedIDs: 143a0000
+      m_LastClickedID: 14868
+      m_ExpandedIDs: 78fbffff94390000d4390000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 11.039375, y: -10.95035, z: -0.7328377}
+    m_Target: {x: 25.114424, y: -18.242, z: 0.8384514}
     speed: 2
-    m_Value: {x: 11.039375, y: -10.95035, z: -0.7328377}
+    m_Value: {x: 25.114424, y: -18.242, z: 0.8384514}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,9 +533,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.20201111, y: 0.70737785, z: -0.2234769, w: -0.6394302}
+    m_Target: {x: -0.07710428, y: 0.91738784, z: -0.32348248, w: -0.21866436}
     speed: 2
-    m_Value: {x: -0.20234562, y: 0.70641625, z: -0.2231731, w: -0.64048904}
+    m_Value: {x: -0.07710426, y: 0.9173876, z: -0.3234824, w: -0.21866432}
   m_Size:
     m_Target: 47.177776
     speed: 2
@@ -923,19 +923,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/PlayerMovement
+    - Assets/Scripts/GOAP
   m_ViewMode: 1
   m_StartGridSize: 85
   m_LastFolders:
-  - Assets/Scripts/PlayerMovement
+  - Assets/Scripts/GOAP
   m_LastFoldersGridSize: 85
   m_LastProjectPath: C:\Users\Chloe Culver\Desktop\GameDev\GOAP-Projectv1\GOAP-Projectv1
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 29}
-    m_SelectedIDs: 58370000
-    m_LastClickedID: 14168
+    scrollPos: {x: 0, y: 41}
+    m_SelectedIDs: 78370000
+    m_LastClickedID: 14200
     m_ExpandedIDs: 00000000042d0000ce37000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1008,7 +1008,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 10}
+      m_ClientGUIView: {fileID: 9}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1792
+  m_LastSelectedObjectID: 14868
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52

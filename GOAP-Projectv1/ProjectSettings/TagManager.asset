@@ -9,6 +9,7 @@ TagManager:
   - Office
   - Toilet
   - Weapon
+  - Cover
   layers:
   - Default
   - TransparentFX
