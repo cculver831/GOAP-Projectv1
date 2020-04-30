@@ -39,7 +39,8 @@ public class GAgent : MonoBehaviour {
     Vector3 destination = Vector3.zero;
 
     // Start is called before the first frame update
-    public void Start() {
+    public void Start()
+    {
         GAction[] acts = this.GetComponents<GAction>();
         foreach (GAction a in acts)
             actions.Add(a);
