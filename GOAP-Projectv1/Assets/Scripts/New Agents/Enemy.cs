@@ -16,8 +16,8 @@ public class Enemy : GAgent
         SubGoal s1 = new SubGoal("isCovered", 1, true);
         // Add it to the goals
         goals.Add(s1, 3);
-
-   
+        SubGoal s2 = new SubGoal("seesPlayer", 1, false);
+        goals.Add(s2, 5);
         //Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
     }
 

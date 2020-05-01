@@ -107,7 +107,7 @@ public sealed class GWorld {
         // Create Cover array
         covers = new ResourceQueue("Cover", "FreeCover", world);
         // Add to the resources Dictionary
-        resources.Add("covers", offices);
+        resources.Add("covers", covers);
     }
 
     public ResourceQueue GetQueue(string type) {
