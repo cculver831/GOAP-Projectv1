@@ -6,7 +6,7 @@
  **/
 public class Enemy : GAgent
 {
-
+    public int health;
     new void Start()
     {
 
@@ -16,18 +16,42 @@ public class Enemy : GAgent
         SubGoal s1 = new SubGoal("isCovered", 1, true);
         // Add it to the goals
         goals.Add(s1, 3);
-        SubGoal s2 = new SubGoal("seesPlayer", 1, false);
+        SubGoal s2 = new SubGoal("ApproachPlayer", 1, false);
         goals.Add(s2, 5);
         //Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
     }
 
-    //void NeedRelief()
-    //{
+    public Transform target;
 
-    //    beliefs.ModifyState("busting", 0);
-    //    // Call the get NeedRelief method over and over at random times to make the agent
-    //    // go to the loo again
-    //    Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
-    //}
+    float rotationSpeed = 2.0f;
+    float visDist = 20.0f;
+    float visAngle = 90.0f;
 
+
+    // Update is called once per frame
+    void Update()
+    {
+        // direction  is the target( player) location in the world 'compared' to this object's own position in the world
+        Vector3 direction = target.position - transform.position;
+        // angle is the angle this object is from the target
+        float angle = Vector3.Angle(direction, transform.forward);
+
+        if (direction.magnitude < visDist && angle < visAngle)
+        {
+            direction.y = 0;
+
+            //turns towards player
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction), Time.deltaTime * 10);
+                beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
+           // Debug.Log("I see you");
+
+
+        }
+
+        if(health <= health/2)
+        {
+            beliefs.ModifyState("isHurt", 0);
+        }
+    }
 }
