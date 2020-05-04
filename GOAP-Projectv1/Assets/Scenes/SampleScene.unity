@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: []
   currentAction: {fileID: 0}
-  health: 10
+  health: 4
   target: {fileID: 1907645002}
 --- !u!114 &1127172768
 MonoBehaviour:

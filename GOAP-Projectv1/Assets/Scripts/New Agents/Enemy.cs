@@ -6,18 +6,18 @@
  **/
 public class Enemy : GAgent
 {
-    public int health;
+    public int health = 2;
     new void Start()
     {
-
+        
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
         SubGoal s1 = new SubGoal("isCovered", 1, true);
         // Add it to the goals
-        goals.Add(s1, 3);
+        goals.Add(s1, 5);
         SubGoal s2 = new SubGoal("ApproachPlayer", 1, false);
-        goals.Add(s2, 5);
+        goals.Add(s2,1);
         //Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
     }
 
@@ -48,10 +48,16 @@ public class Enemy : GAgent
 
 
         }
-
-        if(health <= health/2)
+        float low = getHealth()/2;
+        if(health <= 5)
         {
             beliefs.ModifyState("isHurt", 0);
+            Debug.Log(" I'm hurt");
         }
+    }
+
+    int getHealth()
+    {
+        return health;
     }
 }
