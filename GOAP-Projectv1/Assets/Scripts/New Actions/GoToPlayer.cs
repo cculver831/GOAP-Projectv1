@@ -6,16 +6,8 @@ public class GoToPlayer : GAction
 {
     public override bool PrePerform()
     {
-    if(beliefs.HasState("SeesPlayer"))
-        {
-            Debug.Log("I See You");
-            return true;
-        }
-        
-        else
-        {
-            return false;
-        }
+        Debug.Log("I see you");
+        return true;
     }
 
     public override bool PostPerform()

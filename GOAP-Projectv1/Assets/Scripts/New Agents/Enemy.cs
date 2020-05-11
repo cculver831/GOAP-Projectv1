@@ -6,6 +6,9 @@
  **/
 public class Enemy : GAgent
 {
+    //Text for visuals
+    public GameObject FloatingText;
+    private float meleeRange = 3.0f;
     public int health = 2;
     new void Start()
     {
@@ -23,7 +26,7 @@ public class Enemy : GAgent
 
     public Transform target;
 
-    float rotationSpeed = 2.0f;
+    //float rotationSpeed = 2.0f;
     float visDist = 20.0f;
     float visAngle = 90.0f;
 
@@ -39,24 +42,30 @@ public class Enemy : GAgent
         if (direction.magnitude < visDist && angle < visAngle)
         {
             direction.y = 0;
-
+            ShowText();
             //turns towards player
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction), Time.deltaTime * 10);
                 beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             beliefs.ModifyState("HasWeapon", 0);
            // Debug.Log("I see you");
-
+           if(target.position.magnitude - transform.position.magnitude <= meleeRange)
+            {
+                Debug.Log("I can punch you, but I don't know how :/");
+                beliefs.ModifyState("isinMeleeRange", 0);
+            }
 
         }
-        float low = getHealth()/2;
         if(health <= 5)
         {
             beliefs.ModifyState("isHurt", 0);
             Debug.Log(" I'm hurt");
         }
     }
-
+    void ShowText()
+    {
+        Instantiate(FloatingText, transform.position, Quaternion.identity);
+    }
     int getHealth()
     {
         return health;

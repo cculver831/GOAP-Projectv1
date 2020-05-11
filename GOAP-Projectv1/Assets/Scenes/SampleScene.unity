@@ -882,6 +882,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: []
   currentAction: {fileID: 0}
+  FloatingText: {fileID: 483241877045929508, guid: a9c3caa77ca20a34fa35cdf851a13681,
+    type: 3}
   health: 10
   target: {fileID: 1907645002}
 --- !u!114 &1127172768
@@ -931,7 +933,7 @@ MonoBehaviour:
   preConditions:
   - key: SeesPlayer
     value: 0
-  - key: doesNotHaveWeapon
+  - key: inMeleeRange
     value: 0
   afterEffects:
   - key: ApproachPlayer
