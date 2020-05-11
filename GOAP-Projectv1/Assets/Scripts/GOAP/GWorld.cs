@@ -71,6 +71,8 @@ public sealed class GWorld {
     // Queue for the puddles
     private static ResourceQueue covers;
 
+    private static ResourceQueue weapons;
+
     // Storage for all
     private static Dictionary<string, ResourceQueue> resources = new Dictionary<string, ResourceQueue>();
 
@@ -78,36 +80,16 @@ public sealed class GWorld {
 
         // Create our world
         world = new WorldStates();
-        // Create patients array
-        patients = new ResourceQueue("", "", world);
-        // Add to the resources Dictionary
-        resources.Add("patients", patients);
-        // Create cubicles array
-        cubicles = new ResourceQueue("Cubicle", "FreeCubicle", world);
-        // Add to the resources Dictionary
-        resources.Add("cubicles", cubicles);
-        // Create offices array
-        offices = new ResourceQueue("Office", "FreeOffice", world);
-        // Add to the resources Dictionary
-        resources.Add("offices", offices);
-        // Create toilet array
-        toilets = new ResourceQueue("Toilet", "FreeToilet", world);
-        // Add to the resources Dictionary
-        resources.Add("toilets", toilets);
-        // Create puddles array
-        puddles = new ResourceQueue("Puddle", "FreePuddle", world);
-        // Add to the resources Dictionary
-        resources.Add("puddles", puddles);
-
-        // Set the time scale in Unity
-       // Time.timeScale = 5.0f;
-
 
         //New Resources
         // Create Cover array
         covers = new ResourceQueue("Cover", "FreeCover", world);
         // Add to the resources Dictionary
         resources.Add("covers", covers);
+
+        weapons = new ResourceQueue("Weapon", "FreeWeapon", world);
+        // Add to the resources Dictionary
+        resources.Add("weapons", weapons);
     }
 
     public ResourceQueue GetQueue(string type) {

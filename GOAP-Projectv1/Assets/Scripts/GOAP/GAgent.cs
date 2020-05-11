@@ -8,6 +8,8 @@ public class SubGoal {
     // Bool to store if goal should be removed after it has been achieved
     public bool remove;
     // Constructor
+    //Name, Cost, should I remove it?
+
     public SubGoal(string s, int i, bool r) {
 
         sGoals = new Dictionary<string, int>();

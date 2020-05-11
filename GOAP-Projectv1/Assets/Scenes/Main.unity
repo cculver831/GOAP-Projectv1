@@ -906,10 +906,8 @@ MonoBehaviour:
   preConditions:
   - key: FreeCover
     value: 0
-  - key: isHurt
-    value: 0
   afterEffects:
-  - key: isCovered
+  - key: Safe
     value: 0
   agent: {fileID: 0}
   running: 0
@@ -965,6 +963,29 @@ MonoBehaviour:
   afterEffects:
   - key: ApproachPlayer
     value: 1
+  agent: {fileID: 0}
+  running: 0
+--- !u!114 &1127172771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127172766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c294b9079f676f34d802090ae3ffea0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Action
+  cost: 1
+  target: {fileID: 5283358939730557645}
+  targetTag: Weapon
+  duration: 4
+  preConditions: []
+  afterEffects:
+  - key: Armed
+    value: 0
   agent: {fileID: 0}
   running: 0
 --- !u!1 &1162446459
@@ -1651,7 +1672,7 @@ PrefabInstance:
     - target: {fileID: 3665435031255575356, guid: 5eea3fb6b4f91834fbac0d97d11cb42e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.55
+      value: 16.16
       objectReference: {fileID: 0}
     - target: {fileID: 3665435031255575356, guid: 5eea3fb6b4f91834fbac0d97d11cb42e,
         type: 3}
@@ -1717,3 +1738,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5283358939730557647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283358939730557645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f598d859580ec57439af53cc2e1f240e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
