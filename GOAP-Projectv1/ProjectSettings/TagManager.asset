@@ -10,6 +10,7 @@ TagManager:
   - Toilet
   - Weapon
   - Cover
+  - Enemy
   layers:
   - Default
   - TransparentFX

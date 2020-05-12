@@ -62,8 +62,7 @@ public class Enemy : GAgent
             inSight = true;
             ShowText();
             //turns towards player
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(direction), Time.deltaTime * 10);
+            //transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), Time.deltaTime * 10);
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             //beliefs.ModifyState("HasWeapon", 0);
             // Debug.Log("I see you");
