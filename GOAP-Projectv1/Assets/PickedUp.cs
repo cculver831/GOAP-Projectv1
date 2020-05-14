@@ -17,10 +17,11 @@ public class PickedUp : MonoBehaviour
             Debug.Log("It's touching me!!!)");
             GetComponent<BoxCollider>().isTrigger = true;
             //collision.transform.parent = this.transform;
-            //Destroy(gameObject, 1);
+            //We eventually want to change destroy object to adding it to collision.addtoinventory();
+            Destroy(gameObject, 1);
             //object1 is now the child of object2
         }
-        Debug.Log("Something Touched me!");
+      
     }
 
 }

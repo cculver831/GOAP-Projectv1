@@ -7,13 +7,14 @@
 public class Enemy : GAgent
 {
     //Text for visuals
-    public GameObject FloatingText;
-    private float meleeRange = 3.0f;
+    public GameObject text;
     private bool inSight = false;
+    private float meleeRange = 3.0f;
     public int health = 2;
     new void Start()
     {
-        
+        Instantiate(text, transform.position, Quaternion.identity, transform);
+        text.SetActive(false);
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
@@ -40,8 +41,8 @@ public class Enemy : GAgent
     void Update()
     {
         EnemySight();
-
-        if(health <= 5)
+       
+        if (health <= 5)
         {
             beliefs.ModifyState("isHurt", 0);
             //Debug.Log(" I'm hurt");
@@ -50,7 +51,7 @@ public class Enemy : GAgent
     }
     void EnemySight()
     {
-        //Debug.Log("Insight: " + inSight);
+
         // direction  is the target( player) location in the world 'compared' to this object's own position in the world
         Vector3 direction = target.position - transform.position;
         // angle is the angle this object is from the target
@@ -62,26 +63,32 @@ public class Enemy : GAgent
             inSight = true;
             ShowText();
             //turns towards player
-            //transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), Time.deltaTime * 10);
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), Time.deltaTime * 10);
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
-            //beliefs.ModifyState("HasWeapon", 0);
-            // Debug.Log("I see you");
             if (target.position.magnitude - transform.position.magnitude <= meleeRange)
             {
                 //Debug.Log("I can punch you, but I don't know how :/");
                 beliefs.ModifyState("isinMeleeRange", 0);
             }
-
+            
         }
         else
         {
+            //turns off text when player is no longer seen
             inSight = false;
+            //text.SetActive(false); 
         }
     }
     void ShowText()
     {
-
-        
+        while(inSight)
+        {
+            text.SetActive(true);
+        }
+        while(!inSight)
+        {
+            text.SetActive(false);
+        }
 
     }
 
