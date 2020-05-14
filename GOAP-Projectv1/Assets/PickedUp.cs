@@ -18,7 +18,7 @@ public class PickedUp : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = true;
             //collision.transform.parent = this.transform;
             //We eventually want to change destroy object to adding it to collision.addtoinventory();
-            Destroy(gameObject, 1);
+            //Destroy(gameObject, 1);
             //object1 is now the child of object2
         }
       

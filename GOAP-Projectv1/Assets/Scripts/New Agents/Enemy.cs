@@ -7,14 +7,13 @@
 public class Enemy : GAgent
 {
     //Text for visuals
-    public GameObject text;
-    private bool inSight = false;
+    public GameObject Enemyobj;
+    private static GameObject Text; 
     private float meleeRange = 3.0f;
     public int health = 2;
     new void Start()
     {
-        Instantiate(text, transform.position, Quaternion.identity, transform);
-        text.SetActive(false);
+        Text = Enemyobj.transform.Find("Floating Text").gameObject;
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
@@ -60,7 +59,6 @@ public class Enemy : GAgent
         if (direction.magnitude < visDist && angle < visAngle)
         {
             direction.y = 0;
-            inSight = true;
             ShowText();
             //turns towards player
             transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), Time.deltaTime * 10);
@@ -75,20 +73,14 @@ public class Enemy : GAgent
         else
         {
             //turns off text when player is no longer seen
-            inSight = false;
-            //text.SetActive(false); 
+
+            Text.SetActive(false); 
         }
     }
     void ShowText()
     {
-        while(inSight)
-        {
-            text.SetActive(true);
-        }
-        while(!inSight)
-        {
-            text.SetActive(false);
-        }
+            Text.SetActive(true);
+            Debug.Log("Showing Text");
 
     }
 
