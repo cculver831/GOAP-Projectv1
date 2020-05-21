@@ -965,7 +965,7 @@ MonoBehaviour:
   - key: SeesPlayer
     value: 0
   afterEffects:
-  - key: ApproachPlayer
+  - key: KillPlayer
     value: 1
   agent: {fileID: 0}
   running: 0
@@ -981,11 +981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c294b9079f676f34d802090ae3ffea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Action
+  actionName: Get Weapon
   cost: 1
   target: {fileID: 5283358939730557645}
   targetTag: Weapon
-  duration: 4
+  duration: 2
   preConditions: []
   afterEffects:
   - key: Armed

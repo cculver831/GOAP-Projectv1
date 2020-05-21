@@ -26,7 +26,7 @@ public class GetWeapon : GAction
     public override bool PostPerform()
     {
 
-        
+        beliefs.ModifyState("HasWeapon", 0);
         return true;
     }
 }

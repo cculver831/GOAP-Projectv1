@@ -17,13 +17,13 @@ public class Enemy : GAgent
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 5, false);
+        SubGoal s1 = new SubGoal("Safe", 4, true);
         // Add it to the goals
-        goals.Add(s1, 5);
+        goals.Add(s1, 4);
         SubGoal s2 = new SubGoal("Dodge", 3, false);
         goals.Add(s2, 3);
-        SubGoal s3 = new SubGoal("KillPlayer", 4, false);
-        goals.Add(s3, 4);
+        SubGoal s3 = new SubGoal("KillPlayer", 5, false);
+        goals.Add(s3, 5);
         SubGoal s4 = new SubGoal("Armed",7, true);
         goals.Add(s4, 7);
 
@@ -68,6 +68,10 @@ public class Enemy : GAgent
                 //Debug.Log("I can punch you, but I don't know how :/");
                 beliefs.ModifyState("isinMeleeRange", 0);
             }
+            else
+            {
+                beliefs.RemoveState("isinMeleeRange");
+            }
             
         }
         else
@@ -80,7 +84,7 @@ public class Enemy : GAgent
     void ShowText()
     {
             Text.SetActive(true);
-            Debug.Log("Showing Text");
+            //Debug.Log("Showing Text");
 
     }
 
