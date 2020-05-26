@@ -15,7 +15,8 @@ public class ShootAtPlayer : GAction
     public override bool PostPerform()
     {
         GameObject bulletObject = Instantiate(bullet);
-        bulletObject.transform.position = BulletSpawn.transform.position;
+        bulletObject.transform.position += transform.position + BulletSpawn.transform.forward;
+
         Debug.Log("I am attacking you");
         return true;
     }

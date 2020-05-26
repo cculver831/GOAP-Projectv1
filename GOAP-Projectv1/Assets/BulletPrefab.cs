@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BulletPrefab : MonoBehaviour
 {
-    private float speed = 8f;
+    //private float speed = 8f;
+    //public GameObject bulletSpawn;
 
-
-    private void Update()
-    {
-        //Make Bullet move forward
-        transform.position += transform.forward * speed * Time.deltaTime;
-    }
+    //private void Update()
+    //{
+    //    //Make Bullet move forward
+    //    transform.position += bulletSpawn.transform.forward * speed * Time.deltaTime;
+    //}
 }
