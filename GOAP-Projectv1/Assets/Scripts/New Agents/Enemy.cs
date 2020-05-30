@@ -34,7 +34,7 @@ public class Enemy : GAgent
     public Transform target;
     float visDist = 20.0f;
     float visAngle = 90.0f;
-
+    float speed = 20.0f;
 
     // Update is called once per frame
     void Update()
@@ -56,12 +56,29 @@ public class Enemy : GAgent
         // angle is the angle this object is from the target
         float angle = Vector3.Angle(direction, transform.forward);
 
+        //will need to be modified for player cover
+        //add wall detection
         if (direction.magnitude < visDist && angle < visAngle)
         {
             direction.y = 0;
             ShowText();
             //turns towards player
-            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), Time.deltaTime * 10);
+            // Determine which direction to rotate towards
+            Vector3 targetDirection = target.position - transform.position;
+
+            // The step size is equal to speed times frame time.
+            float singleStep = speed * Time.deltaTime;
+
+            // Rotate the forward vector towards the target direction by one step
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+            // Draw a ray pointing at our target in
+            Debug.DrawRay(transform.position, newDirection, Color.red);
+
+            // Calculate a rotation a step closer to the target and applies rotation to this object
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+            //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             if (target.position.magnitude - transform.position.magnitude <= meleeRange)
             {
