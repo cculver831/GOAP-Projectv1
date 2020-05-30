@@ -940,6 +940,8 @@ MonoBehaviour:
   preConditions:
   - key: FreeCover
     value: 0
+  - key: SeesPlayer
+    value: 0
   afterEffects:
   - key: Safe
     value: 0
@@ -1684,7 +1686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907644996}
   m_LocalRotation: {x: -0, y: -0.4547033, z: -0, w: 0.89064294}
-  m_LocalPosition: {x: 22.36, y: 2.14, z: 7.79}
+  m_LocalPosition: {x: 22.36, y: 1.97, z: 7.79}
   m_LocalScale: {x: 1, y: 1.439, z: 1}
   m_Children:
   - {fileID: 1500539257}

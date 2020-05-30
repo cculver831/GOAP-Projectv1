@@ -32,7 +32,7 @@ public class Enemy : GAgent
 
     //Variables for Enemy Vision
     public Transform target;
-    float visDist = 20.0f;
+    float visDist = 35.0f;
     float visAngle = 90.0f;
     float speed = 20.0f;
 
@@ -40,12 +40,8 @@ public class Enemy : GAgent
     void Update()
     {
         EnemySight();
-       
-        if (health <= 5)
-        {
-            beliefs.ModifyState("isHurt", 0);
-            //Debug.Log(" I'm hurt");
-        }
+        CheckHealth();
+        CheckMelee();
 
     }
     void EnemySight()
@@ -80,21 +76,12 @@ public class Enemy : GAgent
 
             //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
-            if (target.position.magnitude - transform.position.magnitude <= meleeRange)
-            {
-                //Debug.Log("I can punch you, but I don't know how :/");
-                beliefs.ModifyState("isinMeleeRange", 0);
-            }
-            else
-            {
-                beliefs.RemoveState("isinMeleeRange");
-            }
-            
+
         }
         else
         {
             //turns off text when player is no longer seen
-
+            beliefs.RemoveState("SeesPlayer");
             Text.SetActive(false); 
         }
     }
@@ -104,6 +91,25 @@ public class Enemy : GAgent
             //Debug.Log("Showing Text");
 
     }
+    void CheckHealth()
+    {
+        if (health <= 5)
+        {
+            beliefs.ModifyState("isHurt", 0);
+            //Debug.Log(" I'm hurt");
+        }
+    }
+    void CheckMelee()
+    {
+        if (Mathf.Abs(target.position.magnitude - transform.position.magnitude) <= meleeRange)
+        {
+            //Debug.Log("I can punch you, but I don't know how :/");
+            beliefs.ModifyState("isinMeleeRange", 0);
+        }
+        else
+        {
+            beliefs.RemoveState("isinMeleeRange");
+        }
 
-
+    }
 }
