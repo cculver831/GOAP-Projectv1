@@ -17,15 +17,17 @@ public class Enemy : GAgent
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 4, true);
+        SubGoal s1 = new SubGoal("Safe", 2, true);
         // Add it to the goals
-        goals.Add(s1, 4);
-        SubGoal s2 = new SubGoal("Dodge", 3, false);
-        goals.Add(s2, 3);
-        SubGoal s3 = new SubGoal("KillPlayer", 5, false);
-        goals.Add(s3, 5);
-        SubGoal s4 = new SubGoal("Armed",7, true);
-        goals.Add(s4, 7);
+        goals.Add(s1, 2);
+        SubGoal s2 = new SubGoal("Dodge", 1, false);
+        goals.Add(s2, 1);
+        SubGoal s3 = new SubGoal("KillPlayer", 3, false);
+        goals.Add(s3, 3);
+        SubGoal s4 = new SubGoal("Armed",4, true);
+        goals.Add(s4, 4);
+        SubGoal s5 = new SubGoal("Patrol", 5, true);
+        goals.Add(s5, 5);
 
     }
 
