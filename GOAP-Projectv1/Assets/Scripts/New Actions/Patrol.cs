@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Patrol : GAction
 {
-    //Might need to get player into inventory for proper rotation
-    public GameObject[] PatrolRoute;
+    //Change destination everytime
+    public GameObject waypoints;
+    
     public override bool PrePerform()
     {
-
         return true;
     }
-
-    public override bool PostPerform()
+    private void Update()
     {
 
+    }
+    public override bool PostPerform()
+    {
+        LookForPlayer();
         return true;
+    }
+    void LookForPlayer()
+    {
+
     }
 }

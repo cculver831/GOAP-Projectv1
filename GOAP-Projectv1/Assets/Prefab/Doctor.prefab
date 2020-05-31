@@ -573,8 +573,6 @@ GameObject:
   - component: {fileID: 1153096461}
   - component: {fileID: 1153096462}
   - component: {fileID: 1153096463}
-  - component: {fileID: 1153096464}
-  - component: {fileID: 1153096465}
   - component: {fileID: 1153096466}
   m_Layer: 0
   m_Name: Doctor
@@ -659,58 +657,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1153096464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3300799546944532708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5105a8135a39e43ba9c5747eaefc73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: Go To Toilet
-  cost: 1
-  target: {fileID: 0}
-  targetTag: 
-  duration: 5
-  preConditions:
-  - key: FreeCubicle
-    value: 0
-  - key: busting
-    value: 0
-  afterEffects:
-  - key: relief
-    value: 0
-  agent: {fileID: 0}
-  running: 0
---- !u!114 &1153096465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3300799546944532708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a0b6a293904ef4fa270f9f21d42487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: Research
-  cost: 1
-  target: {fileID: 0}
-  targetTag: Office
-  duration: 5
-  preConditions:
-  - key: FreeOffice
-    value: 0
-  afterEffects:
-  - key: research
-    value: 0
-  agent: {fileID: 0}
-  running: 0
 --- !u!114 &1153096466
 MonoBehaviour:
   m_ObjectHideFlags: 0
