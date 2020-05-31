@@ -18,8 +18,9 @@ public class Patrol : GAction
     //}
     public override bool PostPerform()
     {
-
         LookForPlayer();
+
+        
         return true;
     }
     void LookForPlayer()

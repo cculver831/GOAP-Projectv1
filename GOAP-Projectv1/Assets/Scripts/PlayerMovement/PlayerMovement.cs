@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     //Assingables
     public Transform playerCam;
     public Transform orientation;
-    
+    public GameObject bullet;
+    public GameObject BulletSpawn;
     //Other
     private Rigidbody rb;
 
@@ -80,6 +81,10 @@ public class PlayerMovement : MonoBehaviour {
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
+        if(Input.GetButtonDown("Fire1"))
+        {
+            GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        }
     }
 
     private void StartCrouch() {

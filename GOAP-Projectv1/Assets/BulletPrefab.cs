@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletPrefab : MonoBehaviour
 {
     [SerializeField]
-    [Range(15,25)]
+    [Range(15,50)]
     private float speed = 8f;
     //without force
     //transform.Translate(Vector2.right* Hspeed* Time.deltaTime);
@@ -19,7 +19,10 @@ public class BulletPrefab : MonoBehaviour
 
         Invoke("DeSpawn", 3.0f);
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.transform.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
+    }
     public void DeSpawn()
     {
         Destroy(gameObject);

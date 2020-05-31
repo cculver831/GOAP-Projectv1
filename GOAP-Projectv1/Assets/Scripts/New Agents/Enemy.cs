@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 
 /*
@@ -11,6 +12,8 @@ public class Enemy : GAgent
     private static GameObject Text; 
     private float meleeRange = 3.0f;
     public int health = 2;
+    public NavMeshAgent agent;
+    public Waypoint wp;
     new void Start()
     {
         Text = Enemyobj.transform.Find("Floating Text").gameObject;
@@ -29,6 +32,8 @@ public class Enemy : GAgent
         SubGoal s5 = new SubGoal("Patrol", 5, true);
         goals.Add(s5, 5);
 
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+
     }
 
 
@@ -44,6 +49,27 @@ public class Enemy : GAgent
         EnemySight();
         CheckHealth();
         CheckMelee();
+        patrol(health);
+    }
+    void patrol(int h)
+    {
+        if(h < 10)
+        {
+            beliefs.ModifyState("activated", 0);
+            Debug.Log("Agent Activated");
+            agent.Stop();
+            agent.ResetPath();
+        }
+        else
+        {
+            Debug.Log("We's patrolling, mama");
+            agent.SetDestination(wp.GetPosition());
+            if (agent.remainingDistance <= 0f)
+            {
+                wp = wp.nextWaypoint;
+                agent.SetDestination(wp.GetPosition());
+            }
+        }
 
     }
     void EnemySight()
@@ -97,10 +123,11 @@ public class Enemy : GAgent
     }
     void CheckHealth()
     {
-        if (health <= 5)
+        if (health <= 10)
         {
             beliefs.ModifyState("isHurt", 0);
-            //Debug.Log(" I'm hurt");
+            beliefs.ModifyState("activated", 0);
+            Debug.Log(" I'm hurt");
         }
     }
     void CheckMelee()
@@ -115,5 +142,10 @@ public class Enemy : GAgent
             beliefs.RemoveState("isinMeleeRange");
         }
 
+    }
+    public void TakeDamage()
+    {
+        Debug.Log("Ouch! I took damage");
+        health -= 2;
     }
 }

@@ -119,32 +119,7 @@ public class GAgent : MonoBehaviour {
 
                 if (currentAction.target != null) {
                     Transform dest = null; 
-                    if(currentAction.target.tag == "Waypoint")
-                    {
-
-                        for(int i = 0; i < currentAction.target.transform.childCount; i ++)
-                        {
-
-                            currentAction.running = true;
-                            destination = currentAction.target.transform.GetChild(i).position;
-                            dest = currentAction.target.transform.Find("Destination");
-                            // Check we got it
-                            if (dest != null)
-                                destination = dest.position;
-
-                            // Pass Unities AI the destination for the agent
-                            currentAction.agent.SetDestination(destination);
-                            Debug.Log("Changine Destination to location : " + currentAction.target.transform.GetChild(i));
-                            if(currentAction.agent.remainingDistance <= 0)
-                            {
-                                //Change destination to other child
-                            }
-                        }
-                        // Pass in the office then look for its cube
-                        
-                    }
-                    else
-                    {
+ 
                         // Activate the current action
                         currentAction.running = true;
                         // Pass in the office then look for its cube
@@ -158,7 +133,7 @@ public class GAgent : MonoBehaviour {
                         currentAction.agent.SetDestination(destination);
                     }
                     
-                }
+                
             } else {
                 // Force a new plan
                 actionQueue = null;
