@@ -14,12 +14,12 @@ public class PickedUp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("It's touching me!!!)");
+            //Debug.Log("It's touching me!!!)");
             GetComponent<BoxCollider>().isTrigger = true;
-            //collision.transform.parent = this.transform;
+
             //We eventually want to change destroy object to adding it to collision.addtoinventory();
-            //Destroy(gameObject, 1);
-            //object1 is now the child of object2
+            //Destroy(gameObject, 5);
+
         }
       
     }

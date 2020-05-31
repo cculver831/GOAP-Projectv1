@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Patrol : GAction
 {
-    //Change destination everytime
-    public GameObject waypoints;
-    
+
     public override bool PrePerform()
     {
         return true;
     }
-    private void Update()
-    {
-
-    }
+    //private void Update()
+    //{
+    //    for (int i = 0; i < waypoints.transform.childCount; i++)
+    //    {
+    //        Debug.Log("Child Count of Ways Points: " + i);
+    //    }
+    //}
     public override bool PostPerform()
     {
+
         LookForPlayer();
         return true;
     }

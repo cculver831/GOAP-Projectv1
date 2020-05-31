@@ -7,7 +7,7 @@ public class ShootAtPlayer : GAction
     //Might need to get player into inventory for proper rotation
     public GameObject BulletSpawn;
     public GameObject bullet;
-    float speed = 8;
+
     public override bool PrePerform()
     {
         Debug.Log("I have a weapon and I want to shoot you");
@@ -19,7 +19,7 @@ public class ShootAtPlayer : GAction
         
         GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position,BulletSpawn.transform.rotation);
         //bulletObject.transform.position += transform.position + BulletSpawn.transform.forward;
-        Debug.Log("I am attacking you");
+       // Debug.Log("I am attacking you");
         return true;
     }
 }

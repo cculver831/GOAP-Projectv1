@@ -22,7 +22,7 @@ public class Enemy : GAgent
         goals.Add(s1, 2);
         SubGoal s2 = new SubGoal("Dodge", 1, false);
         goals.Add(s2, 1);
-        SubGoal s3 = new SubGoal("KillPlayer", 3, false);
+        SubGoal s3 = new SubGoal("KillPlayer", 5, false);
         goals.Add(s3, 3);
         SubGoal s4 = new SubGoal("Armed",4, true);
         goals.Add(s4, 4);
@@ -78,12 +78,14 @@ public class Enemy : GAgent
 
             //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
-
+            beliefs.RemoveState("Doesn'tSeePlayer"); 
         }
+        
         else
         {
             //turns off text when player is no longer seen
             beliefs.RemoveState("SeesPlayer");
+            beliefs.ModifyState("Doesn'tSeePlayer", 0);
             Text.SetActive(false); 
         }
     }

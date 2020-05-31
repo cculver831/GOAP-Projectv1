@@ -11,6 +11,7 @@ TagManager:
   - Weapon
   - Cover
   - Enemy
+  - Waypoint
   layers:
   - Default
   - TransparentFX

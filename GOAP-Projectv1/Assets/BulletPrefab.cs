@@ -7,7 +7,6 @@ public class BulletPrefab : MonoBehaviour
     [SerializeField]
     [Range(15,25)]
     private float speed = 8f;
-    public GameObject bulletSpawn;
     //without force
     //transform.Translate(Vector2.right* Hspeed* Time.deltaTime);
     private void Start()
