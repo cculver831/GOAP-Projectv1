@@ -13,6 +13,7 @@ public class Enemy : GAgent
     private float meleeRange = 3.0f;
     public int health = 2;
     public NavMeshAgent agent;
+    private bool doOnce = true;
     //public Waypoint wp;
     
     new void Start()
@@ -21,15 +22,15 @@ public class Enemy : GAgent
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 5, true);
+        SubGoal s1 = new SubGoal("Safe", 6, true);
         // Add it to the goals
-        goals.Add(s1, 2);
+        goals.Add(s1, 6);
         SubGoal s2 = new SubGoal("Dodge", 1, false);
         goals.Add(s2, 1);
         SubGoal s3 = new SubGoal("KillPlayer", 5, false);
-        goals.Add(s3, 3);
-        SubGoal s4 = new SubGoal("Armed",4, true);
-        goals.Add(s4, 4);
+        goals.Add(s3, 5);
+        SubGoal s4 = new SubGoal("Armed",7, true);
+        goals.Add(s4, 7);
         SubGoal s5 = new SubGoal("Patrol", 5, false);
         goals.Add(s5, 5);
 
@@ -107,9 +108,15 @@ public class Enemy : GAgent
     {
         if (health < 10)
         {
+            if(doOnce)
+            {
+                beliefs.ModifyState("activated", 0);
+                Debug.Log("Done Once");
+                beliefs.RemoveState("NotActivated");
+                doOnce = false;
+            }
             beliefs.ModifyState("isHurt", 0);
-            beliefs.ModifyState("activated", 0);
-            beliefs.RemoveState("NotActivated");
+            
             Debug.Log("Agent Activated");
             //Debug.Log(" I'm hurt");
         }

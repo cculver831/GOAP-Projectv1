@@ -11,8 +11,8 @@ public class BulletPrefab : MonoBehaviour
     //transform.Translate(Vector2.right* Hspeed* Time.deltaTime);
     private void Start()
     {
-        float randx = Random.Range(-1.05f, 1.5f);
-        float randy = Random.Range(-1.05f, 1.5f);
+        float randx = Random.Range(-0.9f, 0.9f);
+        float randy = Random.Range(-0.9f, 0.9f);
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(randx, randy, 0);
         rb.velocity += transform.forward * speed;

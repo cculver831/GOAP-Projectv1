@@ -17,7 +17,7 @@ public class GetWeapon : GAction
         }
 
         // Add it to the inventory
-        inventory.AddItem(target);
+        
         // Remove it's availability from the world
         GWorld.Instance.GetWorld().ModifyState("FreeWeapon", -1);
         return true;
@@ -28,6 +28,7 @@ public class GetWeapon : GAction
 
         beliefs.ModifyState("HasWeapon", 0);
         Debug.Log("Weapon acquired");
+        inventory.AddItem(target);
         return true;
     }
 }
