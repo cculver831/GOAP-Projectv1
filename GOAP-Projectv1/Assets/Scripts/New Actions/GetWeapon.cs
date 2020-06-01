@@ -27,6 +27,7 @@ public class GetWeapon : GAction
     {
 
         beliefs.ModifyState("HasWeapon", 0);
+        Debug.Log("Weapon acquired");
         return true;
     }
 }

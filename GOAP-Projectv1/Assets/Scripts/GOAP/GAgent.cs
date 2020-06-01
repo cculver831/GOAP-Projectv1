@@ -54,6 +54,10 @@ public class GAgent : MonoBehaviour {
     //for a set location
     void CompleteAction() {
         currentAction.running = false;
+        if(currentAction.wp != null)
+        {
+            currentAction.wp = currentAction.wp.nextWaypoint;
+        }
         currentAction.PostPerform();
         invoked = false;
     }
@@ -65,7 +69,7 @@ public class GAgent : MonoBehaviour {
             float distanceToTarget = Vector3.Distance(destination, this.transform.position);
             //Debug.Log(currentAction.agent.hasPath + "   " + distanceToTarget);
             // Check the agent has a goal and has reached that goal
-            if (distanceToTarget < 2f)//currentAction.agent.remainingDistance < 0.5f)
+            if (distanceToTarget < 2f || beliefs.HasState("activated"))//currentAction.agent.remainingDistance < 0.5f)
             {
                 // Debug.Log("Distance to Goal: " + currentAction.agent.remainingDistance);
                 if (!invoked) {
@@ -116,8 +120,23 @@ public class GAgent : MonoBehaviour {
                 if (currentAction.target == null && currentAction.targetTag != "")
                     // Activate the current action
                     currentAction.target = GameObject.FindWithTag(currentAction.targetTag);
-
-                if (currentAction.target != null) {
+                if(currentAction.wp != null)
+                {
+                    Transform dest = null;
+                    // Activate the current action
+                    currentAction.running = true;
+                    // Pass in the office then look for its cube
+                    destination = currentAction.wp.transform.position;
+                    dest = currentAction.wp.transform.Find("Destination");
+                    // Check we got it
+                    if (dest != null)
+                        destination = dest.position;
+                    
+                    // Pass Unities AI the destination for the agent
+                    currentAction.agent.SetDestination(destination);
+                   
+                }
+                else if (currentAction.target != null) {
                     Transform dest = null; 
  
                         // Activate the current action

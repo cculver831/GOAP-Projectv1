@@ -9,7 +9,7 @@ public abstract class GAction : MonoBehaviour {
     // Cost of the action
     public float cost = 1.0f;
     // Waypoint to patrol routes
-
+    public Waypoint wp;
     // Target where the action is going to take place
     public GameObject target;
     // Store the tag

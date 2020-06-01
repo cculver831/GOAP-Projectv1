@@ -13,14 +13,15 @@ public class Enemy : GAgent
     private float meleeRange = 3.0f;
     public int health = 2;
     public NavMeshAgent agent;
-    public Waypoint wp;
+    //public Waypoint wp;
+    
     new void Start()
     {
         Text = Enemyobj.transform.Find("Floating Text").gameObject;
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 2, true);
+        SubGoal s1 = new SubGoal("Safe", 5, true);
         // Add it to the goals
         goals.Add(s1, 2);
         SubGoal s2 = new SubGoal("Dodge", 1, false);
@@ -29,11 +30,11 @@ public class Enemy : GAgent
         goals.Add(s3, 3);
         SubGoal s4 = new SubGoal("Armed",4, true);
         goals.Add(s4, 4);
-        SubGoal s5 = new SubGoal("Patrol", 5, true);
+        SubGoal s5 = new SubGoal("Patrol", 5, false);
         goals.Add(s5, 5);
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
-
+        beliefs.ModifyState("NotActivated", 0);
     }
 
 
@@ -42,36 +43,17 @@ public class Enemy : GAgent
     float visDist = 35.0f;
     float visAngle = 90.0f;
     float speed = 20.0f;
-
+    //
     // Update is called once per frame
     void Update()
     {
         EnemySight();
         CheckHealth();
         CheckMelee();
-        patrol(health);
+        //patrol(health);
+        //Debug.Log(" Heading to: " + agent.destination);
     }
-    void patrol(int h)
-    {
-        if(h < 10)
-        {
-            beliefs.ModifyState("activated", 0);
-            Debug.Log("Agent Activated");
-            agent.Stop();
-            agent.ResetPath();
-        }
-        else
-        {
-            Debug.Log("We's patrolling, mama");
-            agent.SetDestination(wp.GetPosition());
-            if (agent.remainingDistance <= 0f)
-            {
-                wp = wp.nextWaypoint;
-                agent.SetDestination(wp.GetPosition());
-            }
-        }
 
-    }
     void EnemySight()
     {
 
@@ -123,11 +105,13 @@ public class Enemy : GAgent
     }
     void CheckHealth()
     {
-        if (health <= 10)
+        if (health < 10)
         {
             beliefs.ModifyState("isHurt", 0);
             beliefs.ModifyState("activated", 0);
-            Debug.Log(" I'm hurt");
+            beliefs.RemoveState("NotActivated");
+            Debug.Log("Agent Activated");
+            //Debug.Log(" I'm hurt");
         }
     }
     void CheckMelee()
