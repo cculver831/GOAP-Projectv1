@@ -1704,6 +1704,8 @@ MonoBehaviour:
   Enemyobj: {fileID: 1127172766}
   health: 10
   agent: {fileID: 0}
+  lastLocation: {fileID: 2491183363045488626, guid: 99c09b14c9aa68b4f8731d2f395acf85,
+    type: 3}
   target: {fileID: 1907645002}
 --- !u!114 &1127172768
 MonoBehaviour:
@@ -1830,20 +1832,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127172766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb8ace6db32c4f469979fa99e899294, type: 3}
+  m_Script: {fileID: 11500000, guid: b4566a7099dc1c04d8f8e4e6d392dbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Patrol1
+  actionName: Agressive Patrol
   cost: 1
   wp: {fileID: 1404064926}
   target: {fileID: 0}
   targetTag: 
   duration: 0
   preConditions:
-  - key: NotActivated
+  - key: HasWeapon
+    value: 0
+  - key: activated
+    value: 0
+  - key: Doesn'tSeePlayer
     value: 0
   afterEffects:
-  - key: Patrol
+  - key: KillPlayer
     value: 0
   agent: {fileID: 0}
   running: 0
@@ -1856,22 +1862,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127172766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb8ace6db32c4f469979fa99e899294, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e013bd77e78d264aa6ff8db09addf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Patrol2
+  actionName: Passive Patrol
   cost: 1
   wp: {fileID: 1404064926}
   target: {fileID: 0}
   targetTag: 
   duration: 0
   preConditions:
-  - key: activated
-    value: 0
-  - key: Doesn'tSeePlayer
+  - key: NotActivated
     value: 0
   afterEffects:
-  - key: KillPlayer
+  - key: Patrol
     value: 0
   agent: {fileID: 0}
   running: 0
@@ -2688,6 +2692,8 @@ MonoBehaviour:
   orientation: {fileID: 1500539257}
   bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
   BulletSpawn: {fileID: 2055474008}
+  coolDownPeriodInSeconds: 0.5
+  timeStamp: 0
   moveSpeed: 4500
   maxSpeed: 20
   grounded: 0

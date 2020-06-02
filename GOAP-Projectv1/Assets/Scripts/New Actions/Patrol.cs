@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class Patrol : GAction
 {
-    private bool Completed = false;
+    
     //public Waypoint wp;
     public override bool PrePerform()
     {
 
         return true;
     }
-    private void Update()
-    {
-       if(beliefs.HasState("SeesPlayer"))
-        {
-            
-        }
- 
-    }
+
 
     public override bool PostPerform()
     {

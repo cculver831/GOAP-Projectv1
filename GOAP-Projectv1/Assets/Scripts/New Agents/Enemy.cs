@@ -14,6 +14,7 @@ public class Enemy : GAgent
     public int health = 2;
     public NavMeshAgent agent;
     private bool doOnce = true;
+    public GameObject lastLocation;
     //public Waypoint wp;
     
     new void Start()
@@ -51,8 +52,6 @@ public class Enemy : GAgent
         EnemySight();
         CheckHealth();
         CheckMelee();
-        //patrol(health);
-        //Debug.Log(" Heading to: " + agent.destination);
     }
 
     void EnemySight()
@@ -84,7 +83,7 @@ public class Enemy : GAgent
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
-
+            lastLocation.transform.position = target.transform.position;
             //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer"); 
@@ -117,7 +116,7 @@ public class Enemy : GAgent
             }
             beliefs.ModifyState("isHurt", 0);
             
-            Debug.Log("Agent Activated");
+            //Debug.Log("Agent Activated");
             //Debug.Log(" I'm hurt");
         }
     }
