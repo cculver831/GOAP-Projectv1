@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb8ace6db32c4f469979fa99e899294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Patrol
+  actionName: Patrol1
   cost: 1
   wp: {fileID: 1404064926}
   target: {fileID: 0}
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb8ace6db32c4f469979fa99e899294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Patrol
+  actionName: Patrol2
   cost: 1
   wp: {fileID: 1404064926}
   target: {fileID: 0}

@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     public Transform orientation;
     public GameObject bullet;
     public GameObject BulletSpawn;
+    public float coolDownPeriodInSeconds = 0.5f;
+    public float timeStamp;
     //Other
     private Rigidbody rb;
 
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     public float counterMovement = 0.175f;
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
-
+    // timeStamp = Time.time + coolDownPeriodInSeconds;
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale;
@@ -81,9 +83,10 @@ public class PlayerMovement : MonoBehaviour {
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && timeStamp <= Time.time)
         {
             GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+            timeStamp = Time.time + coolDownPeriodInSeconds;
         }
     }
 

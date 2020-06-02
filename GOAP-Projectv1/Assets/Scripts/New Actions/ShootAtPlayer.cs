@@ -16,10 +16,14 @@ public class ShootAtPlayer : GAction
 
     public override bool PostPerform()
     {
+        Invoke("Fire", 0.5f);
         
-        GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position,BulletSpawn.transform.rotation);
         //bulletObject.transform.position += transform.position + BulletSpawn.transform.forward;
        // Debug.Log("I am attacking you");
         return true;
+    }
+    void Fire ()
+    {
+        GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
     }
 }
