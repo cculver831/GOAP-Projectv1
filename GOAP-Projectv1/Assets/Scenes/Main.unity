@@ -1819,6 +1819,7 @@ MonoBehaviour:
     value: 0
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
 --- !u!114 &1127172769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,7 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: GoToPlayer
-  cost: 2
+  cost: 0
   wp: {fileID: 0}
   target: {fileID: 1110946086}
   targetTag: 
@@ -1840,15 +1841,16 @@ MonoBehaviour:
   preConditions:
   - key: JustSawPlayer
     value: 0
-  - key: activated
-    value: 0
   - key: HasWeapon
+    value: 0
+  - key: Doesn'tSeePlayer
     value: 0
   afterEffects:
   - key: KillPlayer
-    value: 0
+    value: 3
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
 --- !u!114 &1127172770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Shoot At Player
-  cost: 1
+  cost: 0
   wp: {fileID: 0}
   target: {fileID: 1127172766}
   targetTag: 
@@ -1874,9 +1876,10 @@ MonoBehaviour:
     value: 0
   afterEffects:
   - key: KillPlayer
-    value: 0
+    value: 2
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
   BulletSpawn: {fileID: 369216107}
   bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
 --- !u!114 &1127172771
@@ -1905,6 +1908,7 @@ MonoBehaviour:
     value: 0
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
 --- !u!114 &1127172772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,15 +1922,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Agressive Patrol
-  cost: 3
+  cost: 1
   wp: {fileID: 1404064926}
   target: {fileID: 0}
   targetTag: 
   duration: 0
   preConditions:
   - key: HasWeapon
-    value: 0
-  - key: activated
     value: 0
   - key: Doesn'tSeePlayer
     value: 0
@@ -1935,6 +1937,7 @@ MonoBehaviour:
     value: 2
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
 --- !u!114 &1127172773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,6 +1964,7 @@ MonoBehaviour:
     value: 0
   agent: {fileID: 0}
   running: 0
+  finishEarly: 0
 --- !u!4 &1127172774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5107485099718359295, guid: b5a85490c717c88408f046479f4e1b8a,

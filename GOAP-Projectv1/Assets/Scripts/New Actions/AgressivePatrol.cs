@@ -10,21 +10,21 @@ public class AgressivePatrol : GAction
 
         return true;
     }
-    private void Update()
-    {
-       if(beliefs.HasState("SeesPlayer")&& this.GetComponent<GAgent>().currentAction.actionName == "Agressive Patrol")
+        private void Update()
         {
-            this.GetComponent<GAgent>().CancelAction();
-            Debug.Log("I stopped running");
-        }
+           if(beliefs.HasState("SeesPlayer") && running)
+            {
+                finishEarly = true;
+                Debug.Log("Stopping from Agressive Patrol");
+            }
  
-    }
+        }
 
     public override bool PostPerform()
     {
         LookForPlayer();
 
-        Debug.Log("Agressive Patrol Active");
+        //Debug.Log("Agressive Patrol Active");
         return true;
 
 

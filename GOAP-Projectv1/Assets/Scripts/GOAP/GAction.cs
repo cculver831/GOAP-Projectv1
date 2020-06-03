@@ -33,7 +33,7 @@ public abstract class GAction : MonoBehaviour {
     public WorldStates beliefs;
     // Are we currently performing an action?
     public bool running = false;
-
+    public bool finishEarly;
     // Constructor
     public GAction() {
 

@@ -23,17 +23,18 @@ public class Enemy : GAgent
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 6, true);
+        SubGoal s1 = new SubGoal("Safe", 3, true);
         // Add it to the goals
         goals.Add(s1, 6);
         SubGoal s2 = new SubGoal("Dodge", 1, false);
         goals.Add(s2, 1);
-        SubGoal s3 = new SubGoal("KillPlayer", 5, false);
+        SubGoal s3 = new SubGoal("KillPlayer", 3, false);
         goals.Add(s3, 5);
-        SubGoal s4 = new SubGoal("Armed",7, true);
+        SubGoal s4 = new SubGoal("Armed",4, true);
         goals.Add(s4, 7);
-        SubGoal s5 = new SubGoal("Patrol", 5, false);
+        SubGoal s5 = new SubGoal("Patrol", 2, false);
         goals.Add(s5, 5);
+        //InvokeRepeating("")
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         beliefs.ModifyState("NotActivated", 0);
@@ -49,11 +50,17 @@ public class Enemy : GAgent
     // Update is called once per frame
     void Update()
     {
+
         EnemySight();
         CheckHealth();
-        CheckMelee();
+        //CheckMelee();
     }
+    void ReturnBeliefs()
+    {
+        beliefs.GetStates();
 
+
+    }
     void EnemySight()
     {
 
@@ -84,7 +91,7 @@ public class Enemy : GAgent
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
             lastLocation.transform.position = target.transform.position;
-            Debug.Log("PlayerLoc Prefab at: " + lastLocation.transform.position);
+            //Debug.Log("PlayerLoc Prefab at: " + lastLocation.transform.position);
             //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer"); 
@@ -92,13 +99,7 @@ public class Enemy : GAgent
         
         else
         {
-            if (beliefs.HasState("SeesPlayer"))
-            {
-                beliefs.ModifyState("JustSawPlayer", 0);
-                Debug.Log("I just saw you");
-                Invoke("RemoveJSP", 3);
-            }
-                
+            
             //turns off text when player is no longer seen
             beliefs.RemoveState("SeesPlayer");
             beliefs.ModifyState("Doesn'tSeePlayer", 0);
@@ -106,11 +107,6 @@ public class Enemy : GAgent
             
             
         }
-    }
-    void RemoveJSP()
-    {
-        beliefs.RemoveState("JustSawPlayer");
-        Debug.Log("I lost you");
     }
     void ShowText()
     {
@@ -124,11 +120,14 @@ public class Enemy : GAgent
         {
             if(doOnce)
             {
+                beliefs.ModifyState("JustSawPlayer", 0);
                 beliefs.ModifyState("activated", 0);
-                Debug.Log("Done Once");
+                //Debug.Log("Done Once");
                 beliefs.RemoveState("NotActivated");
                 doOnce = false;
             }
+         
+            
             beliefs.ModifyState("isHurt", 0);
             
             //Debug.Log("Agent Activated");

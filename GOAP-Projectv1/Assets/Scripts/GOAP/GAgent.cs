@@ -74,34 +74,8 @@ public class GAgent : MonoBehaviour {
             float distanceToTarget = Vector3.Distance(destination, this.transform.position);
             //Debug.Log(currentAction.agent.hasPath + "   " + distanceToTarget);
             // Check the agent has a goal and has reached that goal
-            if (distanceToTarget < 2f && (currentAction.actionName == "Patrol1"))//currentAction.agent.remainingDistance < 0.5f)
-            {
-                // Debug.Log("Distance to Goal: " + currentAction.agent.remainingDistance);
-                if (!invoked) {
-                    //if the action movement is complete wait
-                    //a certain duration for it to be completed
-                    Invoke("CompleteAction", currentAction.duration);
-                    //beliefs.RemoveState("activated");
-                    Debug.Log("State activate has been removed");
-                    invoked = true;
-                }
-            }
-            //This is bad coding...... but it works
-            else if (distanceToTarget < 2f && currentAction.actionName == "Patrol2")//currentAction.agent.remainingDistance < 0.5f)
-            {
-                // Debug.Log("Distance to Goal: " + currentAction.agent.remainingDistance);
-                if (!invoked)
-                {
-                    //if the action movement is complete wait
-                    //a certain duration for it to be completed
-                    Debug.Log("Patrol with Weapon is active");
-                    Invoke("CompleteAction", currentAction.duration);
-                    //beliefs.RemoveState("activated");
-                    Debug.Log("State activate has been removed");
-                    invoked = true;
-                }
-            }
-            else if (distanceToTarget < 2f)//currentAction.agent.remainingDistance < 0.5f)
+
+            if (distanceToTarget < 2f)//currentAction.agent.remainingDistance < 0.5f)
             {
                 // Debug.Log("Distance to Goal: " + currentAction.agent.remainingDistance);
                 if (!invoked)
@@ -113,6 +87,10 @@ public class GAgent : MonoBehaviour {
                     //Debug.Log("State activate has been removed");
                     invoked = true;
                 }
+            }
+            else if (currentAction.finishEarly)
+            {
+                CancelAction();
             }
             return;
         }

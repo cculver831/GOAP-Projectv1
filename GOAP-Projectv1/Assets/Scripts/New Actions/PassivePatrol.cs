@@ -13,17 +13,19 @@ public class PassivePatrol : GAction
 
     public override bool PostPerform()
     {
-        LookForPlayer();
+
 
         return true;
-
-
-        //return true;
     }
-    void LookForPlayer()
+
+    private void Update()
     {
+        if (beliefs.HasState("activated"))
+        {
+            finishEarly = true;
+            Debug.Log("Stopping from Agressive Patrol");
+        }
 
     }
 
-  
 }
