@@ -60,6 +60,7 @@ public class Enemy : GAgent
 
         if(ISeeYou)
         {
+            ShowText();
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer");
             beliefs.ModifyState("JustSawPlayer", 3);
@@ -68,6 +69,7 @@ public class Enemy : GAgent
         {
             beliefs.RemoveState("SeesPlayer");
             beliefs.ModifyState("Doesn'tSeePlayer", 0);
+            Text.SetActive(false);
         }
 
     }
@@ -86,7 +88,7 @@ public class Enemy : GAgent
         if (direction.magnitude < visDist && angle < visAngle)
         {
             direction.y = 0;
-            ShowText();
+            
             //turns towards player
             // Determine which direction to rotate towards
             Vector3 targetDirection = target.position - transform.position;
@@ -114,9 +116,6 @@ public class Enemy : GAgent
             ISeeYou = false;
             //turns off text when player is no longer seen
 
-            Text.SetActive(false);
-            
-            
         }
     }
     void ShowText()
@@ -143,11 +142,13 @@ public class Enemy : GAgent
            
         }
     }
+    private Vector3 spaceBetween = new Vector3(0, 0, 3);
     void CheckMelee()
     {
         if (Mathf.Abs(target.position.magnitude - transform.position.magnitude) <= meleeRange)
         {
-            //Debug.Log("I can punch you, but I don't know how :/");
+            lastLocation.transform.position = target.transform.position + spaceBetween;
+            Debug.Log("I can punch you, but I don't know how :/");
             beliefs.ModifyState("isinMeleeRange", 0);
         }
         else

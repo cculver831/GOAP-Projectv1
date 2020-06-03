@@ -50,7 +50,7 @@ public class GAgent : MonoBehaviour {
 
     public void CancelAction()
     {
-        Debug.Log("Action Cancelled");
+
         currentAction = null;
         planner = null;
     }

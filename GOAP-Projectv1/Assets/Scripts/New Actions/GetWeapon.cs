@@ -30,6 +30,7 @@ public class GetWeapon : GAction
         beliefs.RemoveState("activated");
         Debug.Log("Weapon acquired");
         inventory.AddItem(target);
+       
         return true;
     }
 }
