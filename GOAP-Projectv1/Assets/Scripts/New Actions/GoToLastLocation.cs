@@ -16,16 +16,16 @@ public class GoToLastLocation : GAction
         {
             
             finishEarly = true;
+            //GetComponent<GAgent>().currentAction = null;
             Debug.Log("I stopped looking for you");
            
         }
-
+        
     }
     public override bool PostPerform()
     {
         
         beliefs.RemoveState("JustSawPlayer");
-        beliefs.ModifyState("Doesn'tSeePlayer",0);
         Debug.Log("I lost you");
         return true;
     }

@@ -23,7 +23,7 @@ public class PassivePatrol : GAction
         if (beliefs.HasState("activated"))
         {
             finishEarly = true;
-            Debug.Log("Stopping from Agressive Patrol");
+
         }
 
     }

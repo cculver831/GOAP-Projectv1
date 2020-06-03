@@ -12,10 +12,10 @@ public class AgressivePatrol : GAction
     }
         private void Update()
         {
-           if(beliefs.HasState("SeesPlayer") && running)
-            {
+           if((beliefs.HasState("SeesPlayer") && running) || (beliefs.HasState("JustSawPlayer") && running))
+        {
                 finishEarly = true;
-                Debug.Log("Stopping from Agressive Patrol");
+                //Debug.Log("Stopping from Agressive Patrol");
             }
  
         }

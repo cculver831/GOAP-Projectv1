@@ -34,7 +34,7 @@ public class Enemy : GAgent
         goals.Add(s4, 7);
         SubGoal s5 = new SubGoal("Patrol", 2, false);
         goals.Add(s5, 5);
-        //InvokeRepeating("")
+        InvokeRepeating("ReturnBeliefs", 0.1f, 0.1f);
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         beliefs.ModifyState("NotActivated", 0);
@@ -57,10 +57,22 @@ public class Enemy : GAgent
     }
     void ReturnBeliefs()
     {
-        beliefs.GetStates();
 
+        if(ISeeYou)
+        {
+            beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
+            beliefs.RemoveState("Doesn'tSeePlayer");
+            beliefs.ModifyState("JustSawPlayer", 3);
+        }
+        else
+        {
+            beliefs.RemoveState("SeesPlayer");
+            beliefs.ModifyState("Doesn'tSeePlayer", 0);
+        }
 
     }
+    public bool ISeeYou = false;
+
     void EnemySight()
     {
 
@@ -92,17 +104,16 @@ public class Enemy : GAgent
             transform.rotation = Quaternion.LookRotation(newDirection);
             lastLocation.transform.position = target.transform.position;
             //Debug.Log("PlayerLoc Prefab at: " + lastLocation.transform.position);
-            //end of enemy Rotate
-            beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
-            beliefs.RemoveState("Doesn'tSeePlayer"); 
+            //end of enemy Rotatea
+
+            ISeeYou = true;
         }
         
         else
         {
-            
+            ISeeYou = false;
             //turns off text when player is no longer seen
-            beliefs.RemoveState("SeesPlayer");
-            beliefs.ModifyState("Doesn'tSeePlayer", 0);
+
             Text.SetActive(false);
             
             
@@ -120,18 +131,16 @@ public class Enemy : GAgent
         {
             if(doOnce)
             {
-                beliefs.ModifyState("JustSawPlayer", 0);
+                
                 beliefs.ModifyState("activated", 0);
                 //Debug.Log("Done Once");
                 beliefs.RemoveState("NotActivated");
+                beliefs.ModifyState("isHurt", 0);
                 doOnce = false;
             }
          
             
-            beliefs.ModifyState("isHurt", 0);
-            
-            //Debug.Log("Agent Activated");
-            //Debug.Log(" I'm hurt");
+           
         }
     }
     void CheckMelee()
@@ -150,6 +159,7 @@ public class Enemy : GAgent
     public void TakeDamage()
     {
         Debug.Log("Ouch! I took damage");
+        beliefs.ModifyState("JustSawPlayer", 0);
         health -= 2;
     }
 }

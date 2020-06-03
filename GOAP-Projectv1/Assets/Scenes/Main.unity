@@ -1837,7 +1837,7 @@ MonoBehaviour:
   wp: {fileID: 0}
   target: {fileID: 1110946086}
   targetTag: 
-  duration: 3
+  duration: 0
   preConditions:
   - key: JustSawPlayer
     value: 0
@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Shoot At Player
-  cost: 0
+  cost: 1
   wp: {fileID: 0}
   target: {fileID: 1127172766}
   targetTag: 
@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Get Weapon
-  cost: 1
+  cost: 0
   wp: {fileID: 0}
   target: {fileID: 5283358939730557645}
   targetTag: Weapon
