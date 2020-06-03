@@ -6,7 +6,7 @@ public class GoToLastLocation : GAction
 {
     public override bool PrePerform()
     {
-        
+        target = GetComponent<Enemy>().lastLocation;
         Debug.Log("I'ma pull up on ya, son");
         return true;
     }
@@ -24,9 +24,9 @@ public class GoToLastLocation : GAction
     }
     public override bool PostPerform()
     {
-        
         beliefs.RemoveState("JustSawPlayer");
         Debug.Log("I lost you");
         return true;
     }
+
 }

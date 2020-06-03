@@ -9,7 +9,7 @@ public class Enemy : GAgent
 {
     //Text for visuals
     public GameObject Enemyobj;
-    private static GameObject Text; 
+    public  GameObject Text; 
     private float meleeRange = 3.0f;
     public int health = 2;
     public NavMeshAgent agent;
@@ -19,7 +19,7 @@ public class Enemy : GAgent
     
     new void Start()
     {
-        Text = Enemyobj.transform.Find("Floating Text").gameObject;
+        
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
@@ -38,6 +38,7 @@ public class Enemy : GAgent
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         beliefs.ModifyState("NotActivated", 0);
+        //Text.SetActive(false);
     }
 
 
@@ -45,7 +46,7 @@ public class Enemy : GAgent
     public Transform target;
     float visDist = 35.0f;
     float visAngle = 90.0f;
-    float speed = 20.0f;
+    float speed =15.0f;
     //
     // Update is called once per frame
     void Update()
@@ -87,28 +88,33 @@ public class Enemy : GAgent
         //add wall detection
         if (direction.magnitude < visDist && angle < visAngle)
         {
-            direction.y = 0;
+            NavMeshHit hit;
+            if (!agent.Raycast(target.position, out hit))
+            {
+                direction.y = 0;
+
+                //turns towards player
+                // Determine which direction to rotate towards
+                Vector3 targetDirection = target.position - transform.position;
+
+                // The step size is equal to speed times frame time.
+                float singleStep = speed * Time.deltaTime;
+
+                // Rotate the forward vector towards the target direction by one step
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+                // Draw a ray pointing at our target in
+                Debug.DrawRay(transform.position, newDirection, Color.red);
+
+                // Calculate a rotation a step closer to the target and applies rotation to this object
+                transform.rotation = Quaternion.LookRotation(newDirection);
+                lastLocation.transform.position = target.transform.position;
             
-            //turns towards player
-            // Determine which direction to rotate towards
-            Vector3 targetDirection = target.position - transform.position;
+                //end of enemy Rotatea
 
-            // The step size is equal to speed times frame time.
-            float singleStep = speed * Time.deltaTime;
-
-            // Rotate the forward vector towards the target direction by one step
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-            // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, newDirection, Color.red);
-
-            // Calculate a rotation a step closer to the target and applies rotation to this object
-            transform.rotation = Quaternion.LookRotation(newDirection);
-            lastLocation.transform.position = target.transform.position;
-            //Debug.Log("PlayerLoc Prefab at: " + lastLocation.transform.position);
-            //end of enemy Rotatea
-
-            ISeeYou = true;
+                ISeeYou = true;
+            }
+           
         }
         
         else
