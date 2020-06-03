@@ -84,6 +84,7 @@ public class Enemy : GAgent
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
             lastLocation.transform.position = target.transform.position;
+            Debug.Log("PlayerLoc Prefab at: " + lastLocation.transform.position);
             //end of enemy Rotate
             beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer"); 
@@ -91,11 +92,25 @@ public class Enemy : GAgent
         
         else
         {
+            if (beliefs.HasState("SeesPlayer"))
+            {
+                beliefs.ModifyState("JustSawPlayer", 0);
+                Debug.Log("I just saw you");
+                Invoke("RemoveJSP", 3);
+            }
+                
             //turns off text when player is no longer seen
             beliefs.RemoveState("SeesPlayer");
             beliefs.ModifyState("Doesn'tSeePlayer", 0);
-            Text.SetActive(false); 
+            Text.SetActive(false);
+            
+            
         }
+    }
+    void RemoveJSP()
+    {
+        beliefs.RemoveState("JustSawPlayer");
+        Debug.Log("I lost you");
     }
     void ShowText()
     {

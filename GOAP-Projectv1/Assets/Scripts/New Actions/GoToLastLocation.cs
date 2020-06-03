@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoToPlayer : GAction
+public class GoToLastLocation : GAction
 {
     public override bool PrePerform()
     {
-        Debug.Log("I see you");
+
+        Debug.Log("I'ma pull up on ya, son");
         return true;
     }
 
     public override bool PostPerform()
     {
-        Debug.Log("I am attacking you");
+        
         return true;
     }
 }

@@ -110,7 +110,7 @@ public class GAgent : MonoBehaviour {
                     //a certain duration for it to be completed
                     Invoke("CompleteAction", currentAction.duration);
                     //beliefs.RemoveState("activated");
-                    Debug.Log("State activate has been removed");
+                    //Debug.Log("State activate has been removed");
                     invoked = true;
                 }
             }
