@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject BulletSpawn;
     public float coolDownPeriodInSeconds = 0.5f;
     public float timeStamp;
+    public int health = 25;
     //Other
     private Rigidbody rb;
 
@@ -274,5 +275,13 @@ public class PlayerMovement : MonoBehaviour {
     private void StopGrounded() {
         grounded = false;
     }
-    
+
+    public void TakeDamage()
+    {
+        health -= 2;
+        if (health < 5)
+        {
+
+        }
+    }
 }

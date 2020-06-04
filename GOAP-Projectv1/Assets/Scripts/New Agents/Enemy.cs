@@ -13,7 +13,7 @@ public class Enemy : GAgent
     //Text for visuals
     public GameObject Enemyobj;
     public  GameObject Text; 
-    private float meleeRange = 3.0f;
+    private float meleeRange = 5.0f;
     public int health = 2;
     public NavMeshAgent agent;
     private bool doOnce = true;
@@ -26,7 +26,7 @@ public class Enemy : GAgent
         // Call the base start
         base.Start();
         // Set up the subgoal "isWaiting"
-        SubGoal s1 = new SubGoal("Safe", 3, true);
+        SubGoal s1 = new SubGoal("Safe", 4, true);
         // Add it to the goals
         goals.Add(s1, 6);
         SubGoal s2 = new SubGoal("Dodge", 1, false);
@@ -41,6 +41,7 @@ public class Enemy : GAgent
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         beliefs.ModifyState("NotActivated", 0);
+       // beliefs.ModifyState("HasNoWeapon", 0);
         //Text.SetActive(false);
     }
 
@@ -57,7 +58,7 @@ public class Enemy : GAgent
 
         EnemySight();
         CheckHealth();
-        //CheckMelee();
+        CheckMelee();
     }
     void ReturnBeliefs()
     {
@@ -136,20 +137,13 @@ public class Enemy : GAgent
     }
     void CheckHealth()
     {
-        if (health < 10)
+        if (health < 10 && doOnce)
         {
-            if(doOnce)
-            {
-                
                 beliefs.ModifyState("activated", 0);
-                //Debug.Log("Done Once");
                 beliefs.RemoveState("NotActivated");
-                beliefs.AddStateOnce("isHurt", 0);
+                //beliefs.AddStateOnce("isHurt", 0);
                 doOnce = false;
-            }
-         
-            
-           
+
         }
     }
     private Vector3 spaceBetween = new Vector3(0, 0, 3);
@@ -157,8 +151,8 @@ public class Enemy : GAgent
     {
         if (Mathf.Abs(target.position.magnitude - transform.position.magnitude) <= meleeRange)
         {
-            lastLocation.transform.position = target.transform.position + spaceBetween;
-            Debug.Log("I can punch you, but I don't know how :/");
+            //lastLocation.transform.position = target.transform.position + spaceBetween;
+            //Debug.Log("I can punch you, but I don't know how :/");
             beliefs.AddStateOnce("isinMeleeRange", 0);
         }
         else
@@ -169,11 +163,17 @@ public class Enemy : GAgent
     }
     public void TakeDamage()
     {
-        //Debug.Log("Ouch! I took damage");
+
         beliefs.AddStateOnce("JustSawPlayer", 0);
         audioData = GetComponent<AudioSource>();
         audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)];
         audioData.Play();
+        lastLocation.transform.position = target.transform.position;
         health -= 2;
+        if (health < 5)
+        {
+            beliefs.AddStateOnce("isHurt", 0);
+            Debug.Log("I need to find cover!");
+        }
     }
 }

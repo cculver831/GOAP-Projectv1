@@ -14,9 +14,9 @@ public class AgressivePatrol : GAction
         {
            if((beliefs.HasState("SeesPlayer") && running) || (beliefs.HasState("JustSawPlayer") && running))
         {
-                finishEarly = true;
-                //Debug.Log("Stopping from Agressive Patrol");
-            }
+            GetComponent<GAgent>().CompleteAction();
+            //Debug.Log("Stopping from Agressive Patrol");
+        }
  
         }
 
