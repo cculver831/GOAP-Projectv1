@@ -7,6 +7,9 @@ using UnityEngine.AI;
  **/
 public class Enemy : GAgent
 {
+    public AudioClip[] AudioFilesSearching;
+    public AudioClip[] AudioFilesDamage;
+    private AudioSource audioData;
     //Text for visuals
     public GameObject Enemyobj;
     public  GameObject Text; 
@@ -59,17 +62,18 @@ public class Enemy : GAgent
     void ReturnBeliefs()
     {
 
-        if(ISeeYou)
+
+        if (ISeeYou)
         {
             ShowText();
-            beliefs.ModifyState("SeesPlayer", 0); //adds sees player to belief state
+            beliefs.AddStateOnce("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer");
-            beliefs.ModifyState("JustSawPlayer", 3);
+            beliefs.AddStateOnce("JustSawPlayer", 3);
         }
         else
         {
             beliefs.RemoveState("SeesPlayer");
-            beliefs.ModifyState("Doesn'tSeePlayer", 0);
+            beliefs.AddStateOnce("Doesn'tSeePlayer", 0);
             Text.SetActive(false);
         }
 
@@ -140,7 +144,7 @@ public class Enemy : GAgent
                 beliefs.ModifyState("activated", 0);
                 //Debug.Log("Done Once");
                 beliefs.RemoveState("NotActivated");
-                beliefs.ModifyState("isHurt", 0);
+                beliefs.AddStateOnce("isHurt", 0);
                 doOnce = false;
             }
          
@@ -155,7 +159,7 @@ public class Enemy : GAgent
         {
             lastLocation.transform.position = target.transform.position + spaceBetween;
             Debug.Log("I can punch you, but I don't know how :/");
-            beliefs.ModifyState("isinMeleeRange", 0);
+            beliefs.AddStateOnce("isinMeleeRange", 0);
         }
         else
         {
@@ -165,8 +169,11 @@ public class Enemy : GAgent
     }
     public void TakeDamage()
     {
-        Debug.Log("Ouch! I took damage");
-        beliefs.ModifyState("JustSawPlayer", 0);
+        //Debug.Log("Ouch! I took damage");
+        beliefs.AddStateOnce("JustSawPlayer", 0);
+        audioData = GetComponent<AudioSource>();
+        audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)];
+        audioData.Play();
         health -= 2;
     }
 }

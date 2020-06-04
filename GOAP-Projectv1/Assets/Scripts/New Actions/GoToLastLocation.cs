@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class GoToLastLocation : GAction
 {
+    private AudioSource audioData;
+    private AudioClip[] Files;
     public override bool PrePerform()
     {
+        Files = GetComponent<Enemy>().AudioFilesSearching;
         target = GetComponent<Enemy>().lastLocation;
-        Debug.Log("I'ma pull up on ya, son");
+        audioData = GetComponent<AudioSource>();
+
+        audioData.clip = Files[Random.Range(0,Files.Length) ];
+        
+        //Debug.Log("I'ma pull up on ya, son");
+        audioData.Play();
         return true;
     }
     private void Update()
     {
-        if (beliefs.HasState("SeesPlayer") && this.running)
+        if (beliefs.HasState("SeesPlayer") && running)
         {
-            
-            finishEarly = true;
-            //GetComponent<GAgent>().currentAction = null;
-            Debug.Log("I stopped looking for you");
-           
+
+            //finishEarly = true;
+            GetComponent<GAgent>().CompleteAction();
+            //Debug.Log("I stopped looking for you");
+
         }
-        
+
     }
     public override bool PostPerform()
     {
+        
         beliefs.RemoveState("JustSawPlayer");
-        Debug.Log("I lost you");
+       // Debug.Log("I lost you");
+
+
         return true;
     }
 

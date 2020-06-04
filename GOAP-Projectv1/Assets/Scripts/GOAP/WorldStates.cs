@@ -31,6 +31,17 @@ public class WorldStates {
 
         states.Add(key, value);
     }
+    public void AddStateOnce(string key, int value)
+    {
+        if(HasState(key))
+        {
+            return;
+        }
+        else
+        {
+            states.Add(key, value);
+        }
+    }
 
     public void ModifyState(string key, int value) {
 

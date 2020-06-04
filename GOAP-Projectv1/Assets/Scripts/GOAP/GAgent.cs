@@ -50,14 +50,14 @@ public class GAgent : MonoBehaviour {
 
     public void CancelAction()
     {
-
+        Debug.Log("Action Cancelled");
         currentAction = null;
         planner = null;
     }
     bool invoked = false;
     //an invoked method to allow an agent to be performing a task
     //for a set location
-    void CompleteAction() {
+    public void CompleteAction() {
         currentAction.running = false;
         if(currentAction.wp != null)
         {

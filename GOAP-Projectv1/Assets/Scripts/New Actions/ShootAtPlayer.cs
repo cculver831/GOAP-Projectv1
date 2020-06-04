@@ -7,18 +7,28 @@ public class ShootAtPlayer : GAction
     public GameObject BulletSpawn;
     public GameObject bullet;
 
+
     public override bool PrePerform()
     {
-        //beliefs.ModifyState("JustSawPlayer", 0);
-        //Debug.Log("I have a weapon and I want to shoot you");
+
+
+        //Invoke("Fire", 0.5f);
         return true;
     }
-
+    private void Start()
+    {
+        
+    }
     public override bool PostPerform()
     {
-        //beliefs.ModifyState("JustSawPlayer", 0);
+        //beliefs.RemoveState("SeesPlayer");
+        //CancelInvoke("Fire");
         GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
-
         return true;
+    }
+    void Fire()
+    {
+       
+        
     }
 }
