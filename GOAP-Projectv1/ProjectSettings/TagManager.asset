@@ -12,6 +12,7 @@ TagManager:
   - Cover
   - Enemy
   - Waypoint
+  - Ammo
   layers:
   - Default
   - TransparentFX

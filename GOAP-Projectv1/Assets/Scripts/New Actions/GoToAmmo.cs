@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoToCover : GAction
+public class GoToAmmo : GAction
 {
     
     public override bool PrePerform()
     {
 
         // Get a free toilet
-        target = GWorld.Instance.GetQueue("covers").RemoveResource();
+        target = GWorld.Instance.GetQueue("Ammo").RemoveResource();
 
         //Debug.Log("Cover Found");
         // Check we got a toilet
@@ -23,7 +23,7 @@ public class GoToCover : GAction
         // Add it to the inventory
         inventory.AddItem(target);
         // Remove it's availability from the world
-        GWorld.Instance.GetWorld().ModifyState("FreeCover", -1);
+        GWorld.Instance.GetWorld().ModifyState("FreeAmmo", -1);
         return true;
     }
 
@@ -31,14 +31,13 @@ public class GoToCover : GAction
     {
 
         // Return the toilet to the pool
-        GWorld.Instance.GetQueue("covers").AddResource(target);
+        GWorld.Instance.GetQueue("Ammo").AddResource(target);
         // Remove the toilet from the list
         inventory.RemoveItem(target);
         // Give the toilet back to the world
-        GWorld.Instance.GetWorld().ModifyState("FreeCover", 1);
+        GWorld.Instance.GetWorld().ModifyState("FreeAmmo", 1);
         //beliefs.RemoveState("safe");
-        GetComponent<Enemy>().health = 25;
-        beliefs.RemoveState("isHurt");
+        beliefs.RemoveState("NoAmmo");
 
         return true;
     }

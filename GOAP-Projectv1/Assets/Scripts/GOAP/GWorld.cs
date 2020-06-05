@@ -2,6 +2,10 @@
 using System.Linq;
 using UnityEngine;
 
+/*
+ * This class logs all resources the Enemies can use in the game
+ * 
+ */
 public class ResourceQueue {
 
     public Queue<GameObject> que = new Queue<GameObject>();
@@ -70,7 +74,7 @@ public sealed class GWorld {
 
     // Queue for the puddles
     private static ResourceQueue covers;
-
+    private static ResourceQueue Ammo;
     private static ResourceQueue weapons;
 
     // Storage for all
@@ -90,6 +94,9 @@ public sealed class GWorld {
         weapons = new ResourceQueue("Weapon", "FreeWeapon", world);
         // Add to the resources Dictionary
         resources.Add("weapons", weapons);
+        Ammo = new ResourceQueue("Ammo", "FreeAmmo", world);
+        // Add to the resources Dictionary
+        resources.Add("Ammo", Ammo);
     }
 
     public ResourceQueue GetQueue(string type) {
