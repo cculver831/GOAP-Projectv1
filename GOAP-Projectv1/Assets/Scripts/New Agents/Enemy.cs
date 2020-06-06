@@ -175,5 +175,9 @@ public class Enemy : GAgent
             beliefs.AddStateOnce("isHurt", 0);
             Debug.Log("I need to find cover!");
         }
+        else if(health <0)
+        {
+            Debug.Log("I should be dead right now");
+        }
     }
 }
