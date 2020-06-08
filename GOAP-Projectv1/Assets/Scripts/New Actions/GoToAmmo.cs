@@ -37,8 +37,9 @@ public class GoToAmmo : GAction
         // Give the toilet back to the world
         GWorld.Instance.GetWorld().ModifyState("FreeAmmo", 1);
         //beliefs.RemoveState("safe");
-        beliefs.RemoveState("NoAmmo");
-
+        beliefs.RemoveState("HasNoAmmo");
+        beliefs.AddStateOnce("HasAmmo", 0);
+        GetComponent<ShootAtPlayer>().Ammo = 6;
         return true;
     }
 }

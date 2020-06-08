@@ -6,19 +6,22 @@ public class ShootAtPlayer : GAction
 {
     public GameObject BulletSpawn;
     public GameObject bullet;
-    private int Ammo = 6;
+    public int Ammo = 6;
 
     public override bool PrePerform()
     {
 
-        if(Ammo > 0)
+        if(Ammo > 0 )
         {
-            beliefs.AddStateOnce("HasNoAmmo", 0);
+            
             return true;
         }
           
         else
         {
+            Debug.Log("We outta Ammo");
+            beliefs.AddStateOnce("HasNoAmmo", 0);
+            beliefs.RemoveState("HasAmmo");
             return false;
         }
         //Invoke("Fire", 0.5f);
@@ -34,6 +37,8 @@ public class ShootAtPlayer : GAction
         //beliefs.RemoveState("SeesPlayer");
         //CancelInvoke("Fire");
         GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        Ammo--;
+        Debug.Log("Ammo: " + Ammo);
         return true;
     }
     void Fire()

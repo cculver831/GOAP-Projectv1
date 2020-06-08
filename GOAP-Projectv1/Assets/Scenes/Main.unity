@@ -1547,6 +1547,39 @@ Transform:
   m_Father: {fileID: 532617921}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -34.899002, z: 0}
+--- !u!1 &819491887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2456912736960998974, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1088479852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &819491888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819491887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9013327cf32f70a4594f87c476784978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Go To Ammo
+  cost: 1
+  wp: {fileID: 0}
+  target: {fileID: 0}
+  targetTag: Ammo
+  duration: 1
+  preConditions:
+  - key: HasNoAmmo
+    value: 0
+  afterEffects:
+  - key: KillPlayer
+    value: 0
+  agent: {fileID: 0}
+  running: 0
+  finishEarly: 0
 --- !u!1 &894087382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,11 +2146,6 @@ PrefabInstance:
       objectReference: {fileID: 810785496}
     - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
-      propertyPath: AudioFilesSearching.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
       propertyPath: lastLocation
       value: 
       objectReference: {fileID: 1110946086}
@@ -2126,46 +2154,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1907645002}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: preConditions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: afterEffects.Array.data[0].key
-      value: KillPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: preConditions.Array.data[2].key
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: preConditions.Array.data[1].key
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141238845213728450, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: preConditions.Array.data[0].key
-      value: isHurt
-      objectReference: {fileID: 0}
-    - target: {fileID: 3196099004154782711, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: preConditions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3196099004154782711, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
-        type: 3}
-      propertyPath: afterEffects.Array.data[0].key
-      value: KillPlayer
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
 --- !u!1001 &1110946085

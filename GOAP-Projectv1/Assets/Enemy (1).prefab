@@ -652,6 +652,8 @@ MonoBehaviour:
     value: 0
   - key: SeesPlayer
     value: 0
+  - key: HasAmmo
+    value: 0
   afterEffects:
   - key: KillPlayer
     value: 2
@@ -708,18 +710,12 @@ MonoBehaviour:
   wp: {fileID: 0}
   target: {fileID: 0}
   targetTag: Cover
-  duration: 4
+  duration: 3
   preConditions:
-  - key: FreeCover
-    value: 0
   - key: isHurt
     value: 0
-  - key: HasWeapon
-    value: 0
-  - key: 
-    value: 0
   afterEffects:
-  - key: Safe
+  - key: KillPlayer
     value: 0
   agent: {fileID: 0}
   running: 0
@@ -741,7 +737,6 @@ MonoBehaviour:
   AudioFilesSearching:
   - {fileID: 8300000, guid: 440126a25e122ec4db149d1718a266d7, type: 3}
   - {fileID: 8300000, guid: c1aa26d6b39df28448fb8301b6d4a6cd, type: 3}
-  - {fileID: 8300000, guid: 691d9fa10d657e24b9385bec8e3b4dfb, type: 3}
   AudioFilesDamage:
   - {fileID: 8300000, guid: 691d9fa10d657e24b9385bec8e3b4dfb, type: 3}
   - {fileID: 8300000, guid: 26d085e0b74ccc84b996ce05a3ae11b0, type: 3}
@@ -872,10 +867,8 @@ MonoBehaviour:
     value: 0
   - key: isinMeleeRange
     value: 0
-  - key: activated
-    value: 0
   afterEffects:
-  - key: Armed
+  - key: KillPlayer
     value: 0
   agent: {fileID: 0}
   running: 0
