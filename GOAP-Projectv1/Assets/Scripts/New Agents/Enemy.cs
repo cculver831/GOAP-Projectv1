@@ -13,7 +13,7 @@ public class Enemy : GAgent
     //Text for visuals
     public GameObject Enemyobj;
     public  GameObject Text; 
-    private float meleeRange = 5.0f;
+    private float meleeRange = 4.0f;
     public int health = 2;
     public NavMeshAgent agent;
     private bool doOnce = true;
