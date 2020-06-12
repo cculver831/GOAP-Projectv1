@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     //Assingables
+    private GameObject[] weapons;
+    private int weaponNum;
     public Transform playerCam;
     public Transform orientation;
     public GameObject bullet;
@@ -68,6 +70,25 @@ public class PlayerMovement : MonoBehaviour {
     private void Update() {
         MyInput();
         Look();
+        WeaponSwitch();
+    }
+    void WeaponSwitch()
+    {
+        //Get Input From The Mouse Wheel
+        // if mouse wheel gives a positive value add 1 to WeaponNumber
+        // if it gives a negative value decrease WeaponNumber with 1
+        float delta = Input.GetAxis("Mouse ScrollWheel");
+            if (delta > 0)
+            {
+                weaponNum = (weaponNum + 1);
+            Debug.Log("Weapon number now: " + weaponNum);
+        }
+            else if (delta < 0)
+            {
+                weaponNum = (weaponNum - 1);
+            Debug.Log("Weapon number now: " + weaponNum);
+        }    
+       // CurrentWeapon = weapons[weaponNum];
     }
 
     /// <summary>
