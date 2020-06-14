@@ -105,11 +105,12 @@ public class PlayerMovement : MonoBehaviour {
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
-        if(Input.GetButtonDown("Fire1") && timeStamp <= Time.time)
-        {
-            GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
-            timeStamp = Time.time + coolDownPeriodInSeconds;
-        }
+        //Shooting
+        //if(Input.GetButtonDown("Fire1") && timeStamp <= Time.time)
+        //{
+        //    GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        //    timeStamp = Time.time + coolDownPeriodInSeconds;
+        //}
     }
 
     private void StartCrouch() {

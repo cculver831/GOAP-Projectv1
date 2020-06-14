@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPrefab : MonoBehaviour
+public class ShotgunBullet : MonoBehaviour
 {
     [SerializeField]
-    [Range(15,50)]
-    private float speed = 8f;
+    [Range(15,100)]
+    public float speed;
     //without force
     //transform.Translate(Vector2.right* Hspeed* Time.deltaTime);
     private void Start()
@@ -14,10 +14,10 @@ public class BulletPrefab : MonoBehaviour
         float randx = Random.Range(-0.9f, 0.9f);
         float randy = Random.Range(-0.9f, 0.9f);
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(randx, randy, 0);
+        rb.velocity = new Vector3(0, 0, 0);
         rb.velocity += transform.forward * speed;
 
-        Invoke("DeSpawn", 3.0f);
+        Invoke("DeSpawn", 0.5f);
     }
     private void OnCollisionEnter(Collision collision)
     {

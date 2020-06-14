@@ -581,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &290159085
 Transform:
   m_ObjectHideFlags: 0
@@ -3233,13 +3233,14 @@ GameObject:
   - component: {fileID: 1857390392}
   - component: {fileID: 1857390391}
   - component: {fileID: 1857390390}
+  - component: {fileID: 1857390393}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1857390389
 Transform:
   m_ObjectHideFlags: 0
@@ -3285,7 +3286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3650c9e38b42be448a970aa08d999918, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3314,6 +3315,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857390388}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1857390393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857390388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f9561a818842840b4025f8a9561ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShotCount: 12
+  spreadAngle: 3
+  coolDownPeriodInSeconds: 0.5
+  bullet: {fileID: 8148427554427375323, guid: 63be3ae62045c684e9a2ffa181cfb5ef, type: 3}
+  BulletSpawn: {fileID: 1512901508}
 --- !u!1 &1900316260
 GameObject:
   m_ObjectHideFlags: 0
