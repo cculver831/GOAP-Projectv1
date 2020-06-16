@@ -14,7 +14,7 @@ public class Enemy : GAgent
     public GameObject Enemyobj;
     public  GameObject Text; 
     private float meleeRange = 4.0f;
-    public int health = 2;
+    public int health = 50;
     public NavMeshAgent agent;
     private bool doOnce = true;
     public GameObject lastLocation;
@@ -40,9 +40,7 @@ public class Enemy : GAgent
         InvokeRepeating("ReturnBeliefs", 0.1f, 0.1f);
 
         agent = this.gameObject.GetComponent<NavMeshAgent>();
-        beliefs.ModifyState("NotActivated", 0);
-       // beliefs.ModifyState("HasNoWeapon", 0);
-        //Text.SetActive(false);
+        beliefs.ModifyState("NotActivated", 0); //keeps enemy from active aggression (keeps passive until damage is taken
     }
 
 
@@ -60,6 +58,7 @@ public class Enemy : GAgent
         CheckHealth();
         CheckMelee();
     }
+    //Enemy Senses that are updated every tenth of a second
     void ReturnBeliefs()
     {
 
@@ -79,8 +78,8 @@ public class Enemy : GAgent
         }
 
     }
-    public bool ISeeYou = false;
 
+    private bool ISeeYou = false; //for player
     void EnemySight()
     {
 
@@ -146,7 +145,7 @@ public class Enemy : GAgent
 
         }
     }
-    private Vector3 spaceBetween = new Vector3(0, 0, 3);
+   
     void CheckMelee()
     {
         if (Mathf.Abs(target.position.magnitude - transform.position.magnitude) <= meleeRange)
@@ -164,20 +163,28 @@ public class Enemy : GAgent
     public void TakeDamage()
     {
 
-        beliefs.AddStateOnce("JustSawPlayer", 0);
-        audioData = GetComponent<AudioSource>();
-        audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)];
-        audioData.Play();
-        lastLocation.transform.position = target.transform.position;
+        beliefs.AddStateOnce("JustSawPlayer", 0); //update beliefs
+        audioData = GetComponent<AudioSource>(); //Use audio source
+        audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)]; // play random hirt sound
+        audioData.Play(); //play audio
+        lastLocation.transform.position = target.transform.position; //update last location player was in when enemy was hit
         health -= 2;
-        if (health < 5)
+        if (health < 25) //checks if enemy needs to heal
         {
             beliefs.AddStateOnce("isHurt", 0);
             Debug.Log("I need to find cover!");
         }
-        else if(health <0)
+        if(health <0) //Enemy should be dead right now
         {
             Debug.Log("I should be dead right now");
+            this.GetComponent<NavMeshAgent>().enabled = false;
+            this.enabled = false;
+            Invoke("Death", 3.0f);
         }
+    }
+    //deletes enemy from game world
+    void Death()
+    {
+        this.gameObject.SetActive(false);
     }
 }
