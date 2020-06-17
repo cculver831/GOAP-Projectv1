@@ -21,7 +21,7 @@ public class ShotgunBullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collision.transform.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
+        collision.transform.SendMessage("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
         //Destroy(gameObject);
     }
     public void DeSpawn()

@@ -575,13 +575,14 @@ GameObject:
   - component: {fileID: 290159088}
   - component: {fileID: 290159087}
   - component: {fileID: 290159086}
+  - component: {fileID: 290159089}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &290159085
 Transform:
   m_ObjectHideFlags: 0
@@ -656,6 +657,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290159084}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &290159089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290159084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8a6db882823be4cae3a4ecdbc2a9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
+  BulletSpawn: {fileID: 2055474008}
+  coolDownPeriodInSeconds: 0.5
+  timeStamp: 0
 --- !u!1 &371692533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,7 +3277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1857390389
 Transform:
   m_ObjectHideFlags: 0
@@ -3450,10 +3467,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1000273545}
   orientation: {fileID: 1500539257}
-  bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
-  BulletSpawn: {fileID: 2055474008}
-  coolDownPeriodInSeconds: 0.5
-  timeStamp: 0
   health: 25
   moveSpeed: 4500
   maxSpeed: 20

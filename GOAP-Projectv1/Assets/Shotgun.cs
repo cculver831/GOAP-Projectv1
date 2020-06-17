@@ -32,13 +32,6 @@ public class Shotgun : MonoBehaviour
     void Fire()
     {
 
-        //for(int i = 0; i < ShotCount; i++)
-        //{
-        //    int l = Random.Range(-1, 1);
-        //    shots[i] = Random.rotation;
-        //    GameObject pellet = Instantiate(bullet, BulletSpawn.position, BulletSpawn.rotation);
-        //    pellet.transform.rotation = Quaternion.RotateTowards(transform.rotation, shots[i], spreadAngle); //declumps all the bullets
-        //var pellet = bullet.GetComponent<Rigidbody>();
         for (var i = 0; i < ShotCount; i++)
         {
             var pelletRot = transform.rotation;
@@ -46,11 +39,10 @@ public class Shotgun : MonoBehaviour
             pelletRot.y += Random.Range(-spreadAngle, spreadAngle);
             var pellet = Instantiate(bullet, BulletSpawn.transform.position, pelletRot);
             Rigidbody rb = pellet.GetComponent<Rigidbody>();
-            rb.velocity = transform.forward * 4;
+            rb.velocity = transform.forward;
         }
         
         timeStamp = Time.time + coolDownPeriodInSeconds;
-            
-        //}
+
     }
 }

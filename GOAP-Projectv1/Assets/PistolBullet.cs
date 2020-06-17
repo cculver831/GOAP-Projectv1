@@ -21,7 +21,7 @@ public class PistolBullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collision.transform.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
+        collision.transform.SendMessage("TakeDamage",15, SendMessageOptions.DontRequireReceiver);
     }
     public void DeSpawn()
     {

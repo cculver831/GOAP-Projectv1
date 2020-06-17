@@ -23,7 +23,7 @@ public class GoToLastLocation : GAction
         //target = GetComponent<Enemy>().lastLocation;
         if (beliefs.HasState("SeesPlayer") && running)
         {
-
+            target = GetComponent<Enemy>().lastLocation;
             //finishEarly = true;
             GetComponent<GAgent>().CompleteAction();
             //Debug.Log("I stopped looking for you");

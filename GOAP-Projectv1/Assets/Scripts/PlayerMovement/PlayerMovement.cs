@@ -10,10 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     private int weaponNum;
     public Transform playerCam;
     public Transform orientation;
-    public GameObject bullet;
-    public GameObject BulletSpawn;
-    public float coolDownPeriodInSeconds = 0.5f;
-    public float timeStamp;
+
     public int health = 25;
     //Other
     private Rigidbody rb;
@@ -105,12 +102,7 @@ public class PlayerMovement : MonoBehaviour {
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
-        //Shooting
-        //if(Input.GetButtonDown("Fire1") && timeStamp <= Time.time)
-        //{
-        //    GameObject bulletObject = Instantiate(bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
-        //    timeStamp = Time.time + coolDownPeriodInSeconds;
-        //}
+
     }
 
     private void StartCrouch() {

@@ -33,8 +33,7 @@ public class Enemy : GAgent
         goals.Add(s2, 1);
         SubGoal s3 = new SubGoal("KillPlayer", 3, false);
         goals.Add(s3, 5);
-        SubGoal s4 = new SubGoal("Armed",4, true);
-        goals.Add(s4, 7);
+
         SubGoal s5 = new SubGoal("Patrol", 4, false);
         goals.Add(s5, 5);
         InvokeRepeating("ReturnBeliefs", 0.1f, 0.1f);
@@ -65,7 +64,7 @@ public class Enemy : GAgent
 
         if (ISeeYou)
         {
-            ShowText();
+            
             beliefs.AddStateOnce("SeesPlayer", 0); //adds sees player to belief state
             beliefs.RemoveState("Doesn'tSeePlayer");
             beliefs.AddStateOnce("JustSawPlayer", 3);
@@ -111,10 +110,14 @@ public class Enemy : GAgent
                 Debug.DrawRay(transform.position, newDirection, Color.red);
 
                 // Calculate a rotation a step closer to the target and applies rotation to this object
-                transform.rotation = Quaternion.LookRotation(newDirection);
+                if(beliefs.HasState("Aggressive")|| beliefs.HasState("activated"))
+                {
+                    transform.rotation = Quaternion.LookRotation(newDirection);
+                    ShowText();
+                }
                 lastLocation.transform.position = target.transform.position;
             
-                //end of enemy Rotatea
+                //end of enemy Rotate
 
                 ISeeYou = true;
             }
@@ -160,7 +163,7 @@ public class Enemy : GAgent
         }
 
     }
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
 
         beliefs.AddStateOnce("JustSawPlayer", 0); //update beliefs
@@ -168,7 +171,7 @@ public class Enemy : GAgent
         audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)]; // play random hirt sound
         audioData.Play(); //play audio
         lastLocation.transform.position = target.transform.position; //update last location player was in when enemy was hit
-        health -= 2;
+        health -= damage;
         if (health < 25) //checks if enemy needs to heal
         {
             beliefs.AddStateOnce("isHurt", 0);

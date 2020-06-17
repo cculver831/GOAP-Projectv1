@@ -28,6 +28,7 @@ public class GetWeapon : GAction
 
         beliefs.ModifyState("HasWeapon", 0);
         beliefs.AddStateOnce("HasAmmo", 0);
+        beliefs.AddStateOnce("Aggressive", 0);
         beliefs.RemoveState("activated");
         Debug.Log("Weapon acquired");
         inventory.AddItem(target);
