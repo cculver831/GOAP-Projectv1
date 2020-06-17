@@ -2165,6 +2165,16 @@ PrefabInstance:
       propertyPath: health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 3196099004154782711, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196099004154782711, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[2].key
+      value: activated
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
 --- !u!1001 &1110946085
@@ -3337,8 +3347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f9561a818842840b4025f8a9561ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotCount: 12
-  spreadAngle: 3
+  ShotCount: 8
+  spreadAngle: 0.125
   coolDownPeriodInSeconds: 0.5
   bullet: {fileID: 8148427554427375323, guid: 63be3ae62045c684e9a2ffa181cfb5ef, type: 3}
   BulletSpawn: {fileID: 1512901508}

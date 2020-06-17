@@ -35,7 +35,7 @@ public class Enemy : GAgent
         goals.Add(s3, 5);
         SubGoal s4 = new SubGoal("Armed",4, true);
         goals.Add(s4, 7);
-        SubGoal s5 = new SubGoal("Patrol", 2, false);
+        SubGoal s5 = new SubGoal("Patrol", 4, false);
         goals.Add(s5, 5);
         InvokeRepeating("ReturnBeliefs", 0.1f, 0.1f);
 
@@ -136,7 +136,7 @@ public class Enemy : GAgent
     }
     void CheckHealth()
     {
-        if (health < 10 && doOnce)
+        if (health < 50 && doOnce)
         {
                 beliefs.ModifyState("activated", 0);
                 beliefs.RemoveState("NotActivated");

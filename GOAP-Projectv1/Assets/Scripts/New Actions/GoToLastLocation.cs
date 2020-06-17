@@ -20,6 +20,7 @@ public class GoToLastLocation : GAction
     }
     private void Update()
     {
+        //target = GetComponent<Enemy>().lastLocation;
         if (beliefs.HasState("SeesPlayer") && running)
         {
 
@@ -28,6 +29,7 @@ public class GoToLastLocation : GAction
             //Debug.Log("I stopped looking for you");
 
         }
+
 
     }
     public override bool PostPerform()

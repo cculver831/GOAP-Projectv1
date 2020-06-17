@@ -12,10 +12,11 @@ public class Shotgun : MonoBehaviour
     private float timeStamp;
     public GameObject bullet;
     public Transform BulletSpawn;
+
     // Start is called before the first frame update
     void Awake()
     {
-        shots = new List<Quaternion>(new Quaternion[ShotCount]);
+        //shots = new List<Quaternion>(new Quaternion[ShotCount]);
 
     }
 
@@ -30,16 +31,26 @@ public class Shotgun : MonoBehaviour
     }
     void Fire()
     {
-        
-        for(int i = 0; i < ShotCount; i++)
-        {
-            int l = Random.Range(-1, 1);
-            shots[i] = Random.rotation;
-            GameObject pellet = Instantiate(bullet, BulletSpawn.position, BulletSpawn.rotation);
-            pellet.transform.rotation = Quaternion.RotateTowards(transform.rotation, shots[i], spreadAngle); //declumps all the bullets
 
-            timeStamp = Time.time + coolDownPeriodInSeconds;
-            
+        //for(int i = 0; i < ShotCount; i++)
+        //{
+        //    int l = Random.Range(-1, 1);
+        //    shots[i] = Random.rotation;
+        //    GameObject pellet = Instantiate(bullet, BulletSpawn.position, BulletSpawn.rotation);
+        //    pellet.transform.rotation = Quaternion.RotateTowards(transform.rotation, shots[i], spreadAngle); //declumps all the bullets
+        //var pellet = bullet.GetComponent<Rigidbody>();
+        for (var i = 0; i < ShotCount; i++)
+        {
+            var pelletRot = transform.rotation;
+            pelletRot.x += Random.Range(-spreadAngle, spreadAngle);
+            pelletRot.y += Random.Range(-spreadAngle, spreadAngle);
+            var pellet = Instantiate(bullet, BulletSpawn.transform.position, pelletRot);
+            Rigidbody rb = pellet.GetComponent<Rigidbody>();
+            rb.velocity = transform.forward * 4;
         }
+        
+        timeStamp = Time.time + coolDownPeriodInSeconds;
+            
+        //}
     }
 }
