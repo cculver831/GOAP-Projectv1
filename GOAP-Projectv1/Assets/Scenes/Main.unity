@@ -671,7 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
   BulletSpawn: {fileID: 2055474008}
-  coolDownPeriodInSeconds: 0.5
+  coolDownPeriodInSeconds: 0.1
   timeStamp: 0
 --- !u!1 &371692533
 GameObject:
@@ -3905,7 +3905,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1571103638}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1141238845213728453, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
 --- !u!1001 &5283358939730557644
 PrefabInstance:
