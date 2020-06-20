@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &290159085
 Transform:
   m_ObjectHideFlags: 0
@@ -671,8 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
   BulletSpawn: {fileID: 2055474008}
-  coolDownPeriodInSeconds: 0.1
-  timeStamp: 0
+  coolDownPeriodInSeconds: 0.45
 --- !u!1 &371692533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,7 +3276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1857390389
 Transform:
   m_ObjectHideFlags: 0

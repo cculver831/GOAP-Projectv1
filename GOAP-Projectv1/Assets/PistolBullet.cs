@@ -6,7 +6,7 @@ public class PistolBullet : MonoBehaviour
 {
     [SerializeField]
     [Range(15,50)]
-    public float speed = 8f;
+    public float speed = 45f;
     //without force
     //transform.Translate(Vector2.right* Hspeed* Time.deltaTime);
     private void Start()

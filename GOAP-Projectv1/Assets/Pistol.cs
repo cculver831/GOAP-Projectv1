@@ -7,7 +7,7 @@ public class Pistol : MonoBehaviour
     public GameObject bullet;
     public GameObject BulletSpawn;
     public float coolDownPeriodInSeconds = 0.5f;
-    public float timeStamp;
+    private float timeStamp;
 
     // Update is called once per frame
     void Update()
