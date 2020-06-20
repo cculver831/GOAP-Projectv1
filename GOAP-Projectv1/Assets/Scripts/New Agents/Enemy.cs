@@ -13,12 +13,16 @@ public class Enemy : GAgent
     //Text for visuals
     public GameObject Enemyobj;
     public  GameObject Text; 
+    //setting melee range and health
     private float meleeRange = 4.0f;
-    public int health = 50;
+    public int fullHealth = 50;
+    public int CurrentHealth = 50;
+    //self reference
     public NavMeshAgent agent;
     private bool doOnce = true;
+   //gameobject we use to "track" player movement
     public GameObject lastLocation;
-    //public Waypoint wp;
+
     
     new void Start()
     {
@@ -48,19 +52,18 @@ public class Enemy : GAgent
     float visDist = 35.0f;
     float visAngle = 90.0f;
     float speed =15.0f;
-    //
-    // Update is called once per frame
+
     void Update()
     {
 
         EnemySight();
         CheckHealth();
-        CheckMelee();
     }
     //Enemy Senses that are updated every tenth of a second
     void ReturnBeliefs()
     {
-
+        
+        CheckMelee();
 
         if (ISeeYou)
         {
@@ -110,7 +113,7 @@ public class Enemy : GAgent
                 Debug.DrawRay(transform.position, newDirection, Color.red);
 
                 // Calculate a rotation a step closer to the target and applies rotation to this object
-                if(beliefs.HasState("Aggressive")|| beliefs.HasState("activated"))
+                if(beliefs.HasState("Aggressive")|| beliefs.HasState("activated")) // if activated, show exclaimation text
                 {
                     transform.rotation = Quaternion.LookRotation(newDirection);
                     ShowText();
@@ -139,7 +142,7 @@ public class Enemy : GAgent
     }
     void CheckHealth()
     {
-        if (health < 50 && doOnce)
+        if (CurrentHealth < fullHealth && doOnce)
         {
                 beliefs.ModifyState("activated", 0);
                 beliefs.RemoveState("NotActivated");
@@ -147,6 +150,7 @@ public class Enemy : GAgent
                 doOnce = false;
 
         }
+
     }
    
     void CheckMelee()
@@ -168,16 +172,16 @@ public class Enemy : GAgent
 
         beliefs.AddStateOnce("JustSawPlayer", 0); //update beliefs
         audioData = GetComponent<AudioSource>(); //Use audio source
-        audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)]; // play random hirt sound
+        audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)]; // play random hit sound
         audioData.Play(); //play audio
         lastLocation.transform.position = target.transform.position; //update last location player was in when enemy was hit
-        health -= damage;
-        if (health < 25) //checks if enemy needs to heal
+        CurrentHealth -= damage;
+        if (CurrentHealth < (fullHealth/2)) //checks if enemy needs to heal
         {
             beliefs.AddStateOnce("isHurt", 0);
             Debug.Log("I need to find cover!");
         }
-        if(health <0) //Enemy should be dead right now
+        if(CurrentHealth < 0) //Enemy should be dead right now
         {
             Debug.Log("I should be dead right now");
             this.GetComponent<NavMeshAgent>().enabled = false;
@@ -185,7 +189,8 @@ public class Enemy : GAgent
             Invoke("Death", 3.0f);
         }
     }
-    //deletes enemy from game world
+    //"deletes" enemy from game world
+    //will be saved later to calculate score
     void Death()
     {
         this.gameObject.SetActive(false);

@@ -37,7 +37,7 @@ public class GoToCover : GAction
         // Give the toilet back to the world
         GWorld.Instance.GetWorld().ModifyState("FreeCover", 1);
         //beliefs.RemoveState("safe");
-        GetComponent<Enemy>().health = 25;
+        GetComponent<Enemy>().CurrentHealth = 50;
         beliefs.RemoveState("isHurt");
 
         return true;

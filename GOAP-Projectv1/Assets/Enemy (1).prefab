@@ -457,13 +457,14 @@ GameObject:
   - component: {fileID: 1141238845213728449}
   - component: {fileID: 1304116954}
   - component: {fileID: 3196099004154782711}
+  - component: {fileID: 819491888}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5275703140208305701
 Transform:
   m_ObjectHideFlags: 0
@@ -662,6 +663,7 @@ MonoBehaviour:
   finishEarly: 0
   BulletSpawn: {fileID: 1141238844392278138}
   bullet: {fileID: 8148427554427375323, guid: ecbda9d19de1fbf4ba6ffc19fc09232a, type: 3}
+  Ammo: 6
 --- !u!114 &1141238845213728451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,11 +745,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a961d7144895ec14f99fcc544d6f988f, type: 3}
   Enemyobj: {fileID: 2456912736960998974}
   Text: {fileID: 676295599552084537}
-  health: 10
+  health: 50
   agent: {fileID: 0}
   lastLocation: {fileID: 0}
   target: {fileID: 0}
-  ISeeYou: 0
 --- !u!82 &1304116954
 AudioSource:
   m_ObjectHideFlags: 0
@@ -866,6 +867,35 @@ MonoBehaviour:
   - key: SeesPlayer
     value: 0
   - key: isinMeleeRange
+    value: 0
+  - key: activated
+    value: 0
+  afterEffects:
+  - key: KillPlayer
+    value: 0
+  agent: {fileID: 0}
+  running: 0
+  finishEarly: 0
+--- !u!114 &819491888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456912736960998974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9013327cf32f70a4594f87c476784978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Go To Ammo
+  cost: 1
+  wp: {fileID: 0}
+  target: {fileID: 0}
+  targetTag: Ammo
+  duration: 1
+  preConditions:
+  - key: HasNoAmmo
     value: 0
   afterEffects:
   - key: KillPlayer

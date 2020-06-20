@@ -24,13 +24,10 @@ public class ShootAtPlayer : GAction
             beliefs.RemoveState("HasAmmo");
             return false;
         }
-        //Invoke("Fire", 0.5f);
+
 
     }
-    private void Start()
-    {
-        
-    }
+    
     public override bool PostPerform()
     {
        
@@ -41,9 +38,5 @@ public class ShootAtPlayer : GAction
         Debug.Log("Ammo: " + Ammo);
         return true;
     }
-    void Fire()
-    {
-       
-        
-    }
+
 }
