@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &290159085
 Transform:
   m_ObjectHideFlags: 0
@@ -3223,7 +3223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1857390389
 Transform:
   m_ObjectHideFlags: 0
@@ -3833,9 +3833,19 @@ PrefabInstance:
       objectReference: {fileID: 953704199}
     - target: {fileID: 1141238845213728454, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
+      propertyPath: preConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728454, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
       propertyPath: wp
       value: 
       objectReference: {fileID: 1995868279}
+    - target: {fileID: 1141238845213728454, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[0].key
+      value: Doesn'tSeePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
       propertyPath: lastLocation
@@ -3866,6 +3876,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1110946086}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[1].key
+      value: Doesn'tSeePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[2].key
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1141238845213728453, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
     - {fileID: 1141238845213728452, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
