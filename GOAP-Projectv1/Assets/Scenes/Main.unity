@@ -3873,6 +3873,11 @@ PrefabInstance:
       objectReference: {fileID: 1571103638}
     - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
+      propertyPath: preConditions.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1110946086}
@@ -3885,6 +3890,21 @@ PrefabInstance:
         type: 3}
       propertyPath: preConditions.Array.data[2].key
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[3].key
+      value: NotinMeleeRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: preConditions.Array.data[4].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728451, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: actionName
+      value: GoToPlayer(Melee)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1141238845213728453, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}

@@ -160,9 +160,11 @@ public class Enemy : GAgent
             //lastLocation.transform.position = target.transform.position + spaceBetween;
             //Debug.Log("I can punch you, but I don't know how :/");
             beliefs.AddStateOnce("isinMeleeRange", 0);
+            beliefs.RemoveState("NotinMeleeRange");
         }
         else
         {
+            beliefs.AddStateOnce("NotinMeleeRange", 0);
             beliefs.RemoveState("isinMeleeRange");
         }
 
