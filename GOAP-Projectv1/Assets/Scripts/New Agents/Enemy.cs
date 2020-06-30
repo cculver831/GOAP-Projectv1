@@ -22,6 +22,7 @@ public class Enemy : GAgent
     private bool doOnce = true;
    //gameobject we use to "track" player movement
     public GameObject lastLocation;
+    public GameObject[] drops;
 
     
     new void Start()
@@ -195,6 +196,12 @@ public class Enemy : GAgent
     //will be saved later to calculate score
     void Death()
     {
+        for (int i = 0; i < drops.Length; i++)
+        {
+            Instantiate(drops[i], gameObject.transform);
+        }
+        this.GetComponent<Enemy>().enabled = false;
         this.gameObject.SetActive(false);
+
     }
 }

@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &290159085
 Transform:
   m_ObjectHideFlags: 0
@@ -2063,6 +2063,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Ranged
       objectReference: {fileID: 0}
+    - target: {fileID: 2456912736960998974, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5275703140208305701, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2130,6 +2135,11 @@ PrefabInstance:
       objectReference: {fileID: 810785496}
     - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
+      propertyPath: drops.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
       propertyPath: lastLocation
       value: 
       objectReference: {fileID: 1110946086}
@@ -2138,6 +2148,18 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1907645002}
+    - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 7570473905437049845, guid: 71d9877bd8f459c4c9dc532078552a8f,
+        type: 3}
+    - target: {fileID: 1141238845213728449, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
+        type: 3}
+      propertyPath: drops.Array.data[1]
+      value: 
+      objectReference: {fileID: 7570473905437049845, guid: 71d9877bd8f459c4c9dc532078552a8f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0, type: 3}
 --- !u!1001 &1110946085
@@ -3223,7 +3245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1857390389
 Transform:
   m_ObjectHideFlags: 0
@@ -3769,7 +3791,7 @@ PrefabInstance:
     - target: {fileID: 2456912736960998974, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5275703140208305701, guid: 2d4e7bb6aa0330241b2011a3b5e6fea0,
         type: 3}
