@@ -22,7 +22,8 @@ public class Enemy : GAgent
     private bool doOnce = true;
    //gameobject we use to "track" player movement
     public GameObject lastLocation;
-    public GameObject[] drops;
+    public GameObject drop; //Ammo drop
+
 
     
     new void Start()
@@ -170,6 +171,7 @@ public class Enemy : GAgent
         }
 
     }
+    public bool doOnceDead = true;
     public void TakeDamage(int damage)
     {
 
@@ -184,24 +186,30 @@ public class Enemy : GAgent
             beliefs.AddStateOnce("isHurt", 0);
             Debug.Log("I need to find cover!");
         }
-        if(CurrentHealth < 0) //Enemy should be dead right now
+        if(CurrentHealth < 0 && doOnceDead) //Enemy should be dead right now
         {
             Debug.Log("I should be dead right now");
             this.GetComponent<NavMeshAgent>().enabled = false;
             this.enabled = false;
+            
             Invoke("Death", 3.0f);
+            doOnceDead = false;
         }
     }
+   
     //"deletes" enemy from game world
     //will be saved later to calculate score
     void Death()
     {
-        for (int i = 0; i < drops.Length; i++)
+        for ( int i = 0; i < Random.Range(1,3); i ++)
         {
-            Instantiate(drops[i], gameObject.transform);
+            Instantiate(drop, transform.position + new Vector3(0.0f, 0.1f, 0.0f), Quaternion.identity);
         }
-        this.GetComponent<Enemy>().enabled = false;
-        this.gameObject.SetActive(false);
+           
+
+            this.GetComponent<Enemy>().enabled = false;
+            this.gameObject.SetActive(false);
+  
 
     }
 }
