@@ -16,7 +16,7 @@ public class PistolBullet : MonoBehaviour
         //rb.velocity = new Vector3(0, 0, 0);
         //rb.velocity += transform.forward * speed;
         rb.inertiaTensor = new Vector3(1, 1, 1);
-        //Invoke("DeSpawn", 3.0f);
+        //Invoke("DeSpawn", 1.0f);
     }
     private void Update()
     {

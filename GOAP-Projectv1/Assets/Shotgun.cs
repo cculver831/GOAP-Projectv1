@@ -12,15 +12,17 @@ public class Shotgun : MonoBehaviour
     private float timeStamp;
     public GameObject bullet;
     public Transform BulletSpawn;
+    public List<GameObject> vfx = new List<GameObject>();
 
+    private GameObject effectToSpawn;
 
     float variance = 1.0f;
     float distance = 10.0f;
     // Start is called before the first frame update
     void Awake()
     {
-        //shots = new List<Quaternion>(new Quaternion[ShotCount]);
 
+        effectToSpawn = vfx[0];
     }
 
     // Update is called once per frame  && timeStamp <= Time.time
@@ -34,26 +36,36 @@ public class Shotgun : MonoBehaviour
     }
     void Fire()
     {
+        GameObject vfx;
+        //vfx = Instantiate(effectToSpawn, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
 
-        //for (var i = 0; i < ShotCount; i++)
-        //{
-        //    var pelletRot = transform.rotation;
-        //    pelletRot.x += Random.Range(-spreadAngle, spreadAngle);
-        //    pelletRot.y += Random.Range(-spreadAngle, spreadAngle);
-        //    var pellet = Instantiate(bullet, BulletSpawn.transform.position, pelletRot);
-        //    Rigidbody rb = pellet.GetComponent<Rigidbody>();
-        //    rb.velocity = transform.forward;
-        //}
         for (var i = 0; i < 20; i++)
         {
-            var v3Offset = transform.up * Random.Range(0.0f, variance);
-            v3Offset = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), transform.forward) * v3Offset;
-            var v3Hit = transform.forward * distance + v3Offset;
+            Vector3 direction = BulletSpawn.transform.forward; // your initial aim.
+            Vector3 spread = new Vector3(0, 0, 0); 
+            spread += BulletSpawn.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
+            spread += BulletSpawn.transform.right * Random.Range(-1f, 1f); // add random left or right
 
-            // Position an object to test pattern
-            var tr = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-            tr.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            tr.position = v3Hit;
+            // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
+            // Since the radius is always 1 then (after normalization), we need another random call. 
+            direction += spread.normalized * Random.Range(0f, 0.2f);
+            Vector3 bulletPath = direction + BulletSpawn.transform.position;
+            Debug.Log("direction: " + direction);
+            vfx = Instantiate(effectToSpawn, bulletPath, BulletSpawn.transform.rotation);
+            RaycastHit hit;
+            if (Physics.Raycast(BulletSpawn.transform.position, direction, out hit))
+            {
+                Debug.DrawLine(BulletSpawn.transform.position, hit.point, Color.green);
+
+                // - send damage to object we hit - \\
+                hit.collider.SendMessageUpwards("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
+            }
+            else
+            {
+                Debug.DrawRay(BulletSpawn.transform.position, direction, Color.red);
+                hit.collider.SendMessageUpwards("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
+            }
+
             timeStamp = Time.time + coolDownPeriodInSeconds;
         }
     }
