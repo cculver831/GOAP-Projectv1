@@ -13,6 +13,9 @@ public class Shotgun : MonoBehaviour
     public GameObject bullet;
     public Transform BulletSpawn;
 
+
+    float variance = 1.0f;
+    float distance = 10.0f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,17 +35,26 @@ public class Shotgun : MonoBehaviour
     void Fire()
     {
 
-        for (var i = 0; i < ShotCount; i++)
+        //for (var i = 0; i < ShotCount; i++)
+        //{
+        //    var pelletRot = transform.rotation;
+        //    pelletRot.x += Random.Range(-spreadAngle, spreadAngle);
+        //    pelletRot.y += Random.Range(-spreadAngle, spreadAngle);
+        //    var pellet = Instantiate(bullet, BulletSpawn.transform.position, pelletRot);
+        //    Rigidbody rb = pellet.GetComponent<Rigidbody>();
+        //    rb.velocity = transform.forward;
+        //}
+        for (var i = 0; i < 20; i++)
         {
-            var pelletRot = transform.rotation;
-            pelletRot.x += Random.Range(-spreadAngle, spreadAngle);
-            pelletRot.y += Random.Range(-spreadAngle, spreadAngle);
-            var pellet = Instantiate(bullet, BulletSpawn.transform.position, pelletRot);
-            Rigidbody rb = pellet.GetComponent<Rigidbody>();
-            rb.velocity = transform.forward;
-        }
-        
-        timeStamp = Time.time + coolDownPeriodInSeconds;
+            var v3Offset = transform.up * Random.Range(0.0f, variance);
+            v3Offset = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), transform.forward) * v3Offset;
+            var v3Hit = transform.forward * distance + v3Offset;
 
+            // Position an object to test pattern
+            var tr = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+            tr.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            tr.position = v3Hit;
+            timeStamp = Time.time + coolDownPeriodInSeconds;
+        }
     }
 }
