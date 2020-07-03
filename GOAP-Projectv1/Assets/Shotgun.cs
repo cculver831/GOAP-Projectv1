@@ -50,22 +50,18 @@ public class Shotgun : MonoBehaviour
             direction += spread.normalized * Random.Range(0f, 0.2f);
             Vector3 bulletPath = direction + BulletSpawn.transform.position;
             //Debug.Log("direction: " + direction);
-            vfx = Instantiate(effectToSpawn, bulletPath, BulletSpawn.transform.rotation);
             RaycastHit hit;
             //Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 100)
             if (Physics.Raycast(transform.position,  direction, out hit, 100))
             {
+
                 Debug.DrawLine(BulletSpawn.transform.position, hit.point, Color.green);
 
                 // - send damage to object we hit - \\
-                hit.collider.SendMessageUpwards("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
+                hit.collider.SendMessageUpwards("TakeDamage", 20, SendMessageOptions.DontRequireReceiver);
             }
-            else
-            {
-                Debug.DrawRay(BulletSpawn.transform.position, direction, Color.red);
-                //hit.collider.SendMessageUpwards("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
-            }
-            
+            vfx = Instantiate(effectToSpawn, bulletPath, BulletSpawn.transform.rotation);
+
             timeStamp = Time.time + coolDownPeriodInSeconds;
         }
     }

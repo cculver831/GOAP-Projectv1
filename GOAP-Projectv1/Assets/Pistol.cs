@@ -31,8 +31,6 @@ public class Pistol : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 100))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.cyan);
-
-
                 // - send damage to object we hit - \\
                 hit.collider.SendMessageUpwards("TakeDamage", 15, SendMessageOptions.DontRequireReceiver);
             }
