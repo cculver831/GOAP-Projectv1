@@ -59,7 +59,7 @@ public class Enemy : GAgent
     {
 
         EnemySight();
-        CheckHealth();
+        //CheckHealth();
     }
     //Enemy Senses that are updated every tenth of a second
     void ReturnBeliefs()
@@ -142,18 +142,6 @@ public class Enemy : GAgent
             //Debug.Log("Showing Text");
 
     }
-    void CheckHealth()
-    {
-        if (CurrentHealth < fullHealth && doOnce)
-        {
-                beliefs.ModifyState("activated", 0);
-                beliefs.RemoveState("NotActivated");
-                //beliefs.AddStateOnce("isHurt", 0);
-                doOnce = false;
-
-        }
-
-    }
    
     void CheckMelee()
     {
@@ -174,7 +162,14 @@ public class Enemy : GAgent
     public bool doOnceDead = true;
     public void TakeDamage(int damage)
     {
+        if(doOnce)
+        {
+            beliefs.ModifyState("activated", 0);
+            beliefs.RemoveState("NotActivated");
+            doOnce = false;
+        }
 
+        Debug.Log("I got hit");
         beliefs.AddStateOnce("JustSawPlayer", 0); //update beliefs
         audioData = GetComponent<AudioSource>(); //Use audio source
         audioData.clip = GetComponent<Enemy>().AudioFilesDamage[Random.Range(0, AudioFilesDamage.Length)]; // play random hit sound
